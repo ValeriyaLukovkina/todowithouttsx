@@ -1,0 +1,20 @@
+$font-inter-name: 'Inter';
+$font-inter: $font-inter-name, Arial, sans-serif;
+
+$fonts-inter: (
+    'Inter-Light': 300,
+    'Inter-Regular': 400, 
+    'Inter-Medium': 500,
+    'Inter-SemiBold': 600,
+    'Inter-Bold': 700,
+);
+
+@each $font, $weight in $fonts-inter {
+    @font-face {
+        font-family: $font-inter-name;
+        src: url('./../assests/fonts/#{$font}.ttf') format('truetype');
+        font-weight: $weight;
+        font-style: normal;
+        font-display: swap;
+    }
+}

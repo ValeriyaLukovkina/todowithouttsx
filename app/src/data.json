@@ -1,0 +1,139 @@
+[
+  {
+    "id": 1,
+    "task": "Give dog a bath",
+    "complete": true,
+    "date": null,
+    "category": null
+  },
+  {
+    "id": 2,
+    "task": "Do laundry",
+    "complete": true,
+    "date": null,
+    "category": null
+  },
+  {
+    "id": 3,
+    "task": "Vacuum floor",
+    "complete": false,
+    "date": null,
+    "category": null
+  },
+  {
+    "id": 4,
+    "task": "Feed cat",
+    "complete": true,
+    "date": null,
+    "category": null
+  },
+  {
+    "id": 5,
+    "task": "Change light bulbs",
+    "complete": false,
+    "date": null,
+    "category": null
+  },
+  {
+    "id": 6,
+    "task": "Go to Store",
+    "complete": true,
+    "date": null,
+    "category": null
+  },
+  {
+    "id": 7,
+    "task": "Fill gas tank",
+    "complete": true,
+    "date": null,
+    "category": null
+  },
+  {
+    "id": 8,
+    "task": "Change linens",
+    "complete": false,
+    "date": null,
+    "category": null
+  },
+  {
+    "id": 9,
+    "task": "Rake leaves",
+    "complete": true,
+    "date": null,
+    "category": null
+  },
+  {
+    "id": 10,
+    "task": "Bake Cookies",
+    "complete": false,
+    "date": null
+  },
+  {
+    "id": 11,
+    "task": "Take nap",
+    "complete": true,
+    "date": null
+  },
+  {
+    "id": 12,
+    "task": "Read book",
+    "complete": true,
+    "date": null,
+    "category": null
+  },
+  {
+    "id": 13,
+    "task": "Exercise",
+    "complete": false,
+    "date": null
+  },
+  {
+    "id": 14,
+    "task": "Give dog a bath",
+    "complete": false,
+    "date": null,
+    "category": null
+  },
+  {
+    "id": 15,
+    "task": "Do laundry",
+    "complete": false,
+    "date": null,
+    "category": null
+  },
+  {
+    "id": 16,
+    "task": "Vacuum floor",
+    "complete": false,
+    "date": null,
+    "category": null
+  },
+  {
+    "id": 17,
+    "task": "Feed cat",
+    "complete": true,
+    "date": null,
+    "category": null
+  },
+  {
+    "id": 18,
+    "task": "Change light bulbs",
+    "complete": false,
+    "date": null,
+    "category": null
+  },
+  {
+    "id": 19,
+    "task": "Go to Store",
+    "complete": false,
+    "date": null,
+    "category": null
+  },
+  {
+    "id": 20,
+    "task": "Fill gas tank",
+    "complete": false,
+    "date": null,
+    "category": null
+  }
+]

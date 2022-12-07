@@ -1,0 +1,27 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    &_date {
+        display: flex;
+    }
+    &_block {
+        display: flex;
+    }
+}
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-gap: 1px;
+    background-color: #f0f0f0;
+
+    &_cell {
+        min-width: 100px;
+        min-height: 70px;
+        background-color: #000000;
+        color: #ffffff;
+
+        &_current {
+            color: red;
+        }
+    }
+}

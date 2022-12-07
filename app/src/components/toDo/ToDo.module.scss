@@ -1,0 +1,192 @@
+@import './../../commonScss/colors.scss';
+
+.wrp {
+    display: flex;
+    justify-content: space-around;
+}
+
+.todo {
+    width: 40%;
+    max-height: 650px;
+    background-color: $color_dark_todo;
+    color: $white;
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+    position: relative;
+    border-radius: 20px;
+
+    // &_one {
+
+    // }
+
+}
+
+.task {
+    // border: 1px solid red;
+    margin: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 10px;
+    border-radius: 20px;
+
+    &:hover {
+        background-color: $color_dark_todo_bottom;
+        
+    }
+
+    &_text {
+        position: relative;
+        width: 100%;
+        margin: 5px 10px;
+
+        &_category {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            color: $color_text_3;
+            font-size: 12px;
+        }
+
+        &_line {
+            width: 100%;
+            position: absolute;
+            left: 0;
+            top: 50%;
+            border-top: 1px solid $color_text;
+            transform: scale(0);
+            transition: all .5s;
+            transform-origin: top left;
+
+            &_complete {
+                transform: scale(1);
+            }
+        }
+    }
+
+    &_btn {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        border: 1px solid $color_text_2;
+        background-color: transparent;
+        position: relative;
+        transition: all .5s;
+
+        &_complete {
+            background-color: $color_grey_btn;
+        }
+
+        &_span {
+            position: absolute;
+            top: 3.5px;
+            left: 3px;
+            width: 8px;
+            height: 4px;
+            border-left: 2px solid $color_dark_todo;
+            border-bottom: 2px solid $color_dark_todo;
+            border-radius: 2px;
+            // background-color: $color_grey_btn;
+            transform: rotate(-45deg) scale(0);
+            transition: all .5s;
+
+            &_nocomplete {
+                transform: rotate(-45deg) scale(1);
+            }
+        }
+
+        // &_complete {
+
+        //     &::before {
+        //         content: '';
+        //         position: absolute;
+        //         transform: scale(0);
+        //     }
+        // }
+
+        // &_nocomplete {
+        //     background-color: $color_grey_btn;
+
+        //     &:before {
+        //         content: '';
+        //         position: absolute;
+        //         top: 3.5px;
+        //         left: 3px;
+        //         width: 8px;
+        //         height: 4px;
+        //         border-left: 2px solid $color_dark_todo;
+        //         border-bottom: 2px solid $color_dark_todo;
+        //         border-radius: 2px;
+        //         transform: rotate(-45deg) scale(1);
+
+        //     }
+        &:active,
+        &:hover {
+            border: 1px solid $color_blue_btn;
+        }
+    }
+
+    // }
+
+    &_delete {
+        // width: 10px;
+        width: 18px;
+        height: 18px;
+        border: 1px solid $color_grey_btn;
+        border: none;
+        border-radius: 50%;
+        background-color: transparent;
+        position: relative;
+        transition: all .5s;
+        transform-origin: center right;
+        transform: scale(0);
+
+        &_visible {
+            background-color: $color_grey_btn;
+            border: 1px solid $color_grey_btn;
+            transform:  scale(1);
+
+            &:hover,
+            &:active {
+                border: 1px solid $color_blue_btn;
+            }
+
+            &:before {
+                content: '';
+                position: absolute;
+                top: 7px;
+                left: 3px;
+                width: 10px;
+                border-bottom: 2px solid $color_dark_todo;
+                border-radius: 2px;
+                transform: rotate(-45deg);
+            }
+
+            &:after {
+                content: '';
+                position: absolute;
+                top: 7px;
+                left: 3px;
+                width: 10px;
+                border-bottom: 2px solid $color_dark_todo;
+                border-radius: 2px;
+                transform: rotate(45deg);
+            }
+        }
+
+        // &_hidden {
+        //     transform: scale(0);
+        // }
+    }
+}
+
+
+.footer {
+    position: sticky;
+    width: 100%;
+    background-color: $color_dark_todo_bottom;
+    padding: 12px 0;
+    bottom: 0px;
+    right: 0px;
+}
