@@ -1,0 +1,60 @@
+@import "./../../../../../commonScss/colors.scss";
+
+.wrp {
+    position: relative;
+}
+.form {
+    &_input {
+        width: calc(100% - 32px);
+        background-color: transparent;
+        border: 1px solid $color_text_dark;
+        outline: none;
+        padding: 8px 16px;
+        border-radius: 20px;
+
+        &:hover {
+            border: 1px solid $color_text_dark;
+        }
+
+        // &:focus-visible,
+        &:focus {
+            border: 1px solid $color_text_dark;
+            box-shadow: 0px 0px 4px 0px $color_text_dark;
+        }
+
+    }
+}
+
+.time {
+    height: 0;
+    width: 100%;
+    position: absolute;
+    overflow: scroll;
+    background-color: $color_grey_todo;
+    border-radius: 20px;
+    // background-color: #E5E5E5;
+    border: 1px solid transparent;
+    margin-top: 10px;
+    transition: all .5s;
+    // transform: scale(0);
+
+    &_visible {
+        height: 120px;
+        border: 1px solid black;
+        // transform: scale(0);
+    }
+
+    &_item {
+        padding: 5px 16px;
+
+        &:hover {
+            background-color: $color_grey_hover;
+        }
+        &_btn {
+            background-color: transparent;
+            border: none;
+            width: 100%;
+            text-align: left;
+        }
+    }
+}

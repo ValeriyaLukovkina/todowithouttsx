@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { addTask } from "../../../redux/todo-reducer";
-import FormAdd from "./FormAdd";
+import FormAddTaks from "./FormAddTaks";
 
 const mapStateToProps = (state) => {
     return {
@@ -9,6 +9,6 @@ const mapStateToProps = (state) => {
     }
 }
 
-const FormAddContainer = connect(mapStateToProps, { addTask })(FormAdd)
+const FormAddTaskContainer = connect(mapStateToProps, { addTask })(FormAddTaks)
 
-export default FormAddContainer;
+export default FormAddTaskContainer;

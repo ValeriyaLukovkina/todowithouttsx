@@ -1,0 +1,57 @@
+@import './../../commonScss/colors.scss';
+
+.nav {
+    // position: absolute;
+    // top: 0;
+    // bottom: 0;
+    // left: 0;
+    grid-area: n;
+    background-color: $color_dark_todo;
+    width: 200px;
+    color: white;
+    padding: 20px;
+
+    &_img {
+        margin-right: 20px;
+    }
+}
+
+.name {
+    display: flex;
+    align-items: center;
+    padding-bottom: 40px;
+    
+    &_img {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+.item {
+    margin: 20px;
+    display: flex;
+    // justify-content: ;
+}
+
+.item a {
+    color: #FFF;
+    text-decoration: none;
+}
+
+
+.today {
+    position: relative;
+
+    &_img {
+        // position: absolute;
+        // top: 0;
+        // left: 0;
+    }
+
+    &_num {
+        position: absolute;
+        font-size: 10px;
+        top: 8px;
+        left: 4px;
+    }
+}

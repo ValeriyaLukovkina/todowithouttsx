@@ -8,7 +8,6 @@ const PREVIOUS_MONTH = 'NEXT_MONTH';
 const year = 2022;
 const month = 6;
 const day = 2;
-// const startDay = date.startOf('month').startOf('week');
 
 const initialState = {
     date: moment,
@@ -22,7 +21,6 @@ const calendarReducer = (state = initialState, action) => {
             return {
                 ...state,
                 startDay: moment().add(1, 'month').startOf('month').startOf('week'),
-                // date: state.date().add(1, 'month')
             }
         case PREVIOUS_MONTH:
             return {

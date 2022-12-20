@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "category": "personal"
+  },
+  {
+    "id": 2,
+    "category": "work"
+  },
+  {
+    "id": 3,
+    "category": "hobby"
+  }
+]

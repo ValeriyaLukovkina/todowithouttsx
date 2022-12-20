@@ -11,14 +11,19 @@ import logoCross from './../../../assests/svg/Cross.svg';
 const TaskEdit = (props) => {
     return (
         <>
-            <div>
+            <div className={style.wrp}>
                 <div className={style.header}>
                     <div className={style.header_title}>
                         <img className={style.svg} src={logoAim} alt='checked' />
                         <p>{props.task}</p>
                     </div>
                     <div className={style.header_block}>
-                        <button className={style.header_block_btn}>
+                        <button
+                            className={style.header_block_btn}
+                            onClick={props.complete
+                                ? () => props.isComplete(props.id, false)
+                                : () => props.isComplete(props.id, true)}
+                        >
                             <img className={style.svg} src={logoCheck} alt='checked' />
                         </button>
                         <button className={style.header_block_btn}>
@@ -26,28 +31,29 @@ const TaskEdit = (props) => {
                         </button>
                     </div>
                 </div>
-
-                <div>
-                    <h3>{props.task}</h3>
-                </div>
-                <div>
+                {/* <div className={style.wrp}> */}
                     <div>
-                        <img src={logoBell} alt='bell' />
-                        <p>Remind</p>
+                        <h3>{props.task}</h3>
+                    </div>
+                    <div className={style.buttons}>
+                        <button className={style.buttons_block}>
+                            <img className={style.buttons_img} src={logoBell} alt='bell' />
+                            <p>Remind</p>
+                        </button>
+                        <button className={style.buttons_block}>
+                            <img className={style.buttons_img} src={logoFolder} alt='folder' />
+                            <p>{props.category}</p>
+                        </button>
                     </div>
                     <div>
-                        <img src={logoFolder} alt='folder' />
-                        <p>{props.category}</p>
+                        <h4>Notes</h4>
+                        <p>qwertyuio</p>
                     </div>
-                </div>
-                <div>
-                    <h4>Notes</h4>
-                    <p>qwertyuio</p>
-                </div>
-                <div>
-                    <h4>Subtasks</h4>
-                    <p>qwertyuio</p>
-                </div>
+                    <div>
+                        <h4>Subtasks</h4>
+                        <button></button>
+                    </div>
+                {/* </div> */}
             </div>
         </>
     )

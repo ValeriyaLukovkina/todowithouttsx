@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { deleteTask, isComplete } from "../../redux/todo-reducer";
+import { addSubtask, changeAllSubtask, deleteSubtask, deleteTask, isSubtaskComplete, isTaskComplete } from "../../redux/todo-reducer";
 import ToDo from "./ToDo";
 
 const mapStateToProps = (state) => {
@@ -14,8 +14,20 @@ const mapDispatchToProps = (dispatch) => {
         deleteTask: (id) => {
             dispatch(deleteTask(id))
         },
-        isComplete: (id, boolean) => {
-            dispatch(isComplete(id, boolean))
+        deleteSubtask: (taskId, subtaskId) => {
+            dispatch(deleteSubtask(taskId, subtaskId))
+        },
+        isTaskComplete: (taskId, boolean) => {
+            dispatch(isTaskComplete(taskId, boolean))
+        },
+        changeAllSubtask: (taskId, boolean) => {
+            dispatch(changeAllSubtask(taskId, boolean))
+        },
+        isSubtaskComplete: (taskId, subtaskId, boolean) => {
+            dispatch(isSubtaskComplete(taskId, subtaskId, boolean))
+        },
+        addSubtask: (taskId, nameSubtask) => {
+            dispatch(addSubtask(taskId, nameSubtask))
         }
     }
 }

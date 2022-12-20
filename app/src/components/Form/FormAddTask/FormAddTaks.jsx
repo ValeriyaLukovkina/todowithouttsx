@@ -1,9 +1,9 @@
 import React from "react";
 import { Formik } from "formik";
-import style from "./FormAdd.module.scss"
+import style from "./FormAddTask.module.scss"
 
 
-const FormAdd = (props) => {
+const FormAddTaks = (props) => {
     return (
         <>
             <Formik
@@ -50,4 +50,4 @@ const FormAdd = (props) => {
     )
 }
 
-export default FormAdd;
+export default FormAddTaks;

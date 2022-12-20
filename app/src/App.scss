@@ -1,0 +1,44 @@
+@import './commonScss/fonts.scss';
+@import './commonScss/colors.scss';
+
+.app_wrapper {
+  font-family: $font-inter;
+  font-weight: 300;
+  color: white;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  color: $color_text_dark;
+  // max-width: 1200px;
+  // margin: 0 auto;
+  grid-template-areas: 
+  'n c';
+  grid-template-columns: 2fr 10fr;
+
+  &_content {
+    grid-area: c;
+    // background-color: gray;
+  }
+}
+
+// .app_wrapper_content {
+//   grid-area: c;
+//   background-color: gray;
+// }
+
+path { 
+  fill:inherit; 
+  stroke:inherit; 
+}
+
+h2 {
+  font-size: 36px;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 30px;
+  font-weight: 500;
+  // margin: 0;
+  // padding: 0;
+}
