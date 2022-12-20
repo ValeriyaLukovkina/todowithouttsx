@@ -1,14 +1,15 @@
 import React from "react";
 import { useState } from "react";
+// import { changeTask } from "../../../redux/todo-reducer";
 import Form from "../Form";
 
 
-const FormEditTask = ({ nameTask, taskId, updateNameTask, setEditTask }) => {
+const FormEditTask = ({ nameTask, taskId, changeTask, setEditTask }) => {
     // const [oldNameSubtask, setOldNameSubtask] = useState(nameTask)
     const handleBlur = (newNameTask) => {
 
         if (newNameTask.trim()) {
-            updateNameTask(taskId, newNameTask);
+            changeTask(taskId, newNameTask);
             setEditTask(null)
             // setOldNameSubtask(newNameSubtask)
         } else {

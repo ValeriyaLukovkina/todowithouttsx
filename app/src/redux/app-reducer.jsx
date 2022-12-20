@@ -20,12 +20,12 @@ const appReducer = (state = initialState, action) => {
 
 export const initializedSuccess = () => ({ type: INITIALIZED_SUCCESS })
 
-export const initializeApp = () => (dispatch) => {
-    let promise = dispatch(getAllTasks());
-    Promise.all([promise])
-        .then(() => {
-            dispatch(initializedSuccess());
-        })
-    }
+// export const initializeApp = () => (dispatch) => {
+//     let promise = dispatch(getAllTasks());
+//     Promise.all([promise])
+//         .then(() => {
+//             dispatch(initializedSuccess());
+//         })
+//     }
 
 export default appReducer;

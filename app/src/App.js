@@ -6,24 +6,26 @@ import Navbar from './components/Navbar/Navbar';
 import ToDoContainer from './components/toDo/ToDoContainer';
 // import FormAddContainer from './components/Form/FormAdd/FormAddContainer';
 import CalendarContainer from './components/Calendar/CalendarContainer';
-import { initializeApp } from './redux/app-reducer';
+// import { initializeApp } from './redux/app-reducer';
+import LoginContainer from './components/Login/LoginContainer';
 // import FormAdd from './components/FormAdd/FormAdd';
 
 // const ToDoContainer = React.lazy(() => import('./components/toDo/ToDoContainer'));
 // const CalendarContainer = React.lazy(() => import('./components/Calendar/CalendarContainer'));
 
 const App = (props) => {
-  debugger
-  const [initialized, setInitialized] = useState(props.initialized)
-  useEffect(() => {
-    props.initializeApp()
-    setInitialized(props.initialized);
+  // debugger
+  // const [initialized, setInitialized] = useState(props.initialized)
+  // useEffect(() => {
+  //   props.initializeApp()
+  //   setInitialized(props.initialized);
 
-  }, [props.initialized])
+  // }, [props.initialized])
   return (
     <div>
-      {!initialized && <div>hello</div>}
-      {initialized &&
+      <LoginContainer/>
+      {/* {!initialized && <div>hello</div>} */}
+      {/* {initialized && */}
             <div className='app_wrapper'>
             <BrowserRouter>
               <Navbar />
@@ -54,7 +56,7 @@ const App = (props) => {
               Learn React
             </a>
           </header> */}
-          </div>}
+          </div>
 
     </div>
   );

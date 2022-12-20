@@ -1,6 +1,6 @@
 // import { tasksAPI } from '../api/api';
 import { tasksAPI } from '../api/api';
-// import data from '../data.json';
+import data from '../data.json';
 import dataCategories from '../dataCategories.json'
 import { helperAddSubtask, helperDeleteSubtask, updateAllSubtasks, updateObjectInArray, updateObjectInArrayWithExtra } from '../utils/object-helpers';
 
@@ -21,7 +21,7 @@ const ADD_SUBTASK = 'ADD_SUBTASK';
 
 
 const initialState = {
-    tasks: [],
+    tasks: data,
     categories: dataCategories,
 }
 
@@ -121,25 +121,25 @@ export const addSubtask = (taskId, nameSubtask) => ({ type: ADD_SUBTASK, taskId,
 export const choiceDate = (taskId, date) => ({ type: CHOICE_DATE, taskId, date });
 export const choiceTime = (taskId, time) => ({ type: CHOICE_TIME, taskId, time });
 
-export const getAllTasks = () => async (dispatch) => {
-    debugger
-let response = await tasksAPI.getAllTasks();
-if (response.resultCode === 0) {
-    dispatch(setTask(response.tasks))
-} else {
-    console.log('not load')
-}   
-}
+// export const getAllTasks = () => async (dispatch) => {
+//     debugger
+// let response = await tasksAPI.getAllTasks();
+// if (response.resultCode === 0) {
+//     dispatch(setTask(response.tasks))
+// } else {
+//     console.log('not load')
+// }   
+// }
 
-export const updateNameTask = (taskId, name) => async (dispatch) => {
-    let promise = await tasksAPI.updateNameTask(taskId, name);
-    debugger
-    if (promise.resultCode === 0) {
-        dispatch(changeTask(taskId, name))
-        debugger
-    }
-    debugger
-}
+// export const updateNameTask = (taskId, name) => async (dispatch) => {
+//     let promise = await tasksAPI.updateNameTask(taskId, name);
+//     debugger
+//     if (promise.resultCode === 0) {
+//         dispatch(changeTask(taskId, name))
+//         debugger
+//     }
+//     debugger
+// }
 
 // export const getAllTasks = () => async (dispatch) => {
 //     let promise = await tasksAPI.getAllTasks();
