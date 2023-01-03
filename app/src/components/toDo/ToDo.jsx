@@ -1,50 +1,50 @@
-import React, { useState } from "react";
+import React from "react";
 import FormAddContainer from "../Form/FormAddTask/FormAddContainer";
-import TaskEdit from "./TaskEdit.jsx/TaskEdit";
-// import FormEdit from "./FormEdit.jsx/FormAdd";
-// import FormAdd from "../FormAdd/FormAdd";
-import Task from "./Task";
 import style from "./ToDo.module.scss"
-// import { updateObjectInArray } from "../../utils/object-helpers";
-import { sort } from "../../utils/sort-helper";
+import TaskBlock from "./TaskBlock";
 
 const ToDo = (props) => {
+    const categoryBlock = props.categories.map(el => {
+        return <TaskBlock titleBlock={el.title} titleCategory={el.title} tasks={props.tasks} meanSort={props.meanSort} props={props} />
+    })
 
-    const taskWork = sort(props.tasks, 'work', 'category', Task, props);
-    const taskPersonal = sort(props.tasks, 'personal', 'category', Task, props);
+    const dateBlock = props.dateBlock.map(el => {
+        return <TaskBlock titleBlock={el} titleCategory={el} tasks={props.tasks} meanSort={props.meanSort} props={props} />
+    })
 
-    // const task = props.tasks.map((elem) => {
-    //     return <Task category={elem.category} isComplete={props.isComplete} deleteTask={props.deleteTask} key={elem.id} id={elem.id} task={elem.task} complete={elem.complete}/>
-    // })
+    const onChange = () => {
+        if (props.meanSort === 'List') {
+            props.changeMeanSort('Time')
+        } else if (props.meanSort === 'Time') {
+            props.changeMeanSort('List')
+        }
+    }
+
     return (
         <div className={style.wrp}>
-                {/* <div>
-      <p>Вы кликнули {count} раз(а)</p>
-      <button onClick={() => setCount(count + 1)}>
-        Нажми на меня
-      </button> */}
-    {/* </div> */}
-            <h2 className={style.title}>All tasks</h2>
-            <div className={style.todo}>
-                <div>
-                    <div>
-                        <h3>Work</h3>
-                        {taskWork}
-                    </div>
-                    <div>
-                        <h3>Personal</h3>
-                        {taskPersonal}
-                    </div>
-                </div>
-                {/* <h3 className={style.todo_category}>work</h3> */}
-                <div className={style.footer}>
-                    <FormAddContainer />
-
+            <div>
+            <div className={style.header}>
+                <h2 className={style.header_title}>All tasks</h2>
+                <div className={style.header_sort}>
+                    <p className={style.header_sort_text}>Sort by</p>
+                    <button
+                        onClick={onChange}
+                        className={style.header_sort_btn}>{props.meanSort}</button>
                 </div>
             </div>
-            {/* <div className={style.todo + ' ' + style.todo_one}>
-                <TaskEdit category={'category'} task={'name'}/>
-            </div> */}
+            <div className={style.todo}>
+                <div>
+                    <TaskBlock titleBlock={'Common'} titleCategory={null} tasks={props.tasks} meanSort={props.meanSort} props={props} />
+                    {props.meanSort === 'List' && categoryBlock}
+                    {props.meanSort === 'Time' && dateBlock}
+                </div>
+            </div>
+            </div>
+            <div className={style.footer}>
+
+                <FormAddContainer />
+
+            </div>
         </div>
 
     )

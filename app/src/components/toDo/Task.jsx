@@ -6,7 +6,8 @@ import Subtasks from "./Subtasks";
 import TaskInfo from "./TaskInfo";
 import style from "./ToDo.module.scss"
 
-const Task = ({ complete, isTaskComplete, changeAllSubtask, isSubtaskComplete, deleteTask, deleteSubtask, addSubtask, id, task, category, date, subtask, time }) => {
+const Task = ({ complete, isTaskComplete, isAllSubtaskComplete, isSubtaskComplete, deleteTask, 
+    deleteSubtask, addSubtaskPrevious, taskId, nameTask, taskCategory, date, subtask, time, titleCategory }) => {
     const [showFullInfo, setShowFullInfo] = useState(true);
     const [openCategory, setOpenCategory] = useState(false);
     const [openReminder, setOpenReminder] = useState(false);
@@ -15,9 +16,9 @@ const Task = ({ complete, isTaskComplete, changeAllSubtask, isSubtaskComplete, d
     const toggle = () => {
         setShowFullInfo(!showFullInfo)
     }
-    const onTaskComplite = (id, boolean) => {
-        isTaskComplete(id, boolean)
-        changeAllSubtask(id, boolean)
+    const onTaskComplite = (taskId, boolean) => {
+        isTaskComplete(taskId, boolean)
+        isAllSubtaskComplete(taskId, boolean)
     }
 
     return (
@@ -25,32 +26,31 @@ const Task = ({ complete, isTaskComplete, changeAllSubtask, isSubtaskComplete, d
             <div className={style.task}>
                 {complete ?
                     <button className={`${style.task_btn_complete} ${style.task_btn}`}
-                        onClick={() => onTaskComplite(id, false)}>
+                        onClick={() => onTaskComplite(taskId, false)}>
                         <span className={style.task_btn_span_nocomplete + ' ' + style.task_btn_span}></span>
                     </button>
                     :
                     <button className={style.task_btn_nocomplete + ' ' + style.task_btn}
-                        onClick={() => onTaskComplite(id, true)}>
+                        onClick={() => onTaskComplite(taskId, true)}>
                         <span className={style.task_btn_span}></span>
                     </button>
                 }
                 <div className={style.task_text}>
                     {complete && <div className={style.task_text_line_complete + ' ' + style.task_text_line}></div>}
                     {!complete && <div className={style.task_text_line_nocomplete + ' ' + style.task_text_line}></div>}
-                    {id === editTask ? 
-                <div className={style.task_text_edit}>
-                <FormEditTaskContainer setEditTask={setEditTask} taskId={id} nameTask={task}/>
-                </div>
+                    {taskId === editTask ?
+                        <div className={style.task_text_edit}>
+                            <FormEditTaskContainer setEditTask={setEditTask} taskId={taskId} nameTask={nameTask} />
+                        </div>
 
-                    : <p onClick={!complete ? () => setEditTask(id) : null} className={style.task_text_name}>{task}</p>}
+                        : <p onClick={!complete ? () => setEditTask(taskId) : null} className={style.task_text_name}>{nameTask}</p>}
 
-                    {/* <p className={style.task_text_name}>{task}</p> */}
-                    {!complete && <TaskInfo category={category} date={date} time={time} subtask={subtask} />}
+                    {!complete && <TaskInfo taskCategory={taskCategory} date={date} time={time} subtask={subtask} />}
 
                 </div>
                 <button
                     onClick={() => {
-                        deleteTask(id)
+                        deleteTask(taskId)
                     }}
                     className={`${complete ? style.task_delete_visible : style.task_delete_hidden} ${style.task_delete}`}>
                 </button>
@@ -62,16 +62,16 @@ const Task = ({ complete, isTaskComplete, changeAllSubtask, isSubtaskComplete, d
             </div>
             {!showFullInfo &&
                 <>
-                    <Subtasks subtask={subtask} addSubtask = {addSubtask} isSubtaskComplete={isSubtaskComplete} id={id} date={date} time={time} deleteSubtask={deleteSubtask} category={category} />
+                    <Subtasks subtask={subtask} addSubtaskPrevious={addSubtaskPrevious} isSubtaskComplete={isSubtaskComplete} taskId={taskId} date={date} time={time} deleteSubtask={deleteSubtask} taskCategory={taskCategory} />
                     <div className={style.subtask_changes}>
                         <button
                             onClick={() => setOpenReminder(true)}
                             className={style.subtask_changes_btn + ' ' + style.subtask_changes_remind}>remind</button>
-                        <ModalReminderContainer taskId={id} date={date} time={time} isOpen={openReminder} onClose={() => setOpenReminder(false)} />
+                        <ModalReminderContainer taskId={taskId} date={date} time={time} isOpen={openReminder} onClose={() => setOpenReminder(false)} />
                         <button
                             onClick={() => setOpenCategory(true)}
-                            className={style.subtask_changes_btn + ' ' + style.subtask_changes_list}>{category}</button>
-                        <ModalListContainer isOpen={openCategory} taskId={id} category={category} onClose={() => setOpenCategory(false)} />
+                            className={style.subtask_changes_btn + ' ' + style.subtask_changes_list}>{taskCategory ? taskCategory : 'Common'}</button>
+                        <ModalListContainer isOpen={openCategory} taskId={taskId} taskCategory={taskCategory} onClose={() => setOpenCategory(false)} />
                     </div>
                 </>
             }

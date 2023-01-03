@@ -2,6 +2,7 @@
 @import './commonScss/colors.scss';
 
 .app_wrapper {
+  position: static;
   font-family: $font-inter;
   font-weight: 300;
   color: white;
@@ -11,11 +12,12 @@
   color: $color_text_dark;
   // max-width: 1200px;
   // margin: 0 auto;
-  grid-template-areas: 
-  'n c';
+  grid-template-areas: 'n c';
   grid-template-columns: 2fr 10fr;
+  // grid-template-rows: 2fr 10fr;
 
   &_content {
+    min-height: 100vh;
     grid-area: c;
     // background-color: gray;
   }
@@ -32,13 +34,19 @@ path {
 }
 
 h2 {
+  margin: 10px;
   font-size: 36px;
   font-weight: 600;
+  font-family: $font-inter;;
 }
 
 h3 {
+  margin: 10px;
   font-size: 30px;
   font-weight: 500;
-  // margin: 0;
-  // padding: 0;
+  font-family: $font-inter;;
+}
+
+button {
+  font-family: $font-inter;
 }

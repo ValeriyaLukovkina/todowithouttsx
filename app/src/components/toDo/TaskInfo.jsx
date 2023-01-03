@@ -3,7 +3,7 @@ import style from "./ToDo.module.scss";
 import logoSubtask from "./../../assests/svg/Subtask.svg";
 import moment from "moment";
 
-const TaskInfo = ({ category, date, subtask, time }) => {
+const TaskInfo = ({ taskCategory, date, subtask, time }) => {
     const lengthCompleteSubtasks = subtask.reduce((acc, el) => {
         if (el.complete) {
             acc++
@@ -14,9 +14,9 @@ const TaskInfo = ({ category, date, subtask, time }) => {
 
     return (
         <div className={style.task_info}>
-            {category &&
+            {taskCategory &&
                 <div className={style.task_info_block}>
-                    <span className={style.task_info_block_txt}>{category}</span>
+                    <span className={style.task_info_block_txt}>{taskCategory}</span>
                 </div>}
             {date &&
                 <div className={style.task_info_block}>

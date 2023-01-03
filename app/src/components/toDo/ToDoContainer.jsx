@@ -1,18 +1,26 @@
 import React from "react";
 import { connect } from "react-redux";
-import { addSubtask, changeAllSubtask, deleteSubtask, deleteTask, isSubtaskComplete, isTaskComplete } from "../../redux/todo-reducer";
+import { compose } from "redux";
+import { changeMeanSort } from "../../redux/sort-reducer";
+import { addSubtaskPrevious, deleteSubtask, deleteTask, isAllSubtaskComplete, isSubtaskComplete, isTaskComplete } from "../../redux/todo-reducer";
 import ToDo from "./ToDo";
 
 const mapStateToProps = (state) => {
     return {
         tasks: state.toDo.tasks,
+        categories: state.categories.categories,
+        meanSort: state.sort.sort,
+        dateBlock: state.sort.dateBlock,
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        deleteTask: (id) => {
-            dispatch(deleteTask(id))
+        addSubtaskPrevious: (taskId) => {
+            dispatch(addSubtaskPrevious(taskId))
+        },
+        deleteTask: (taskId) => {
+            dispatch(deleteTask(taskId))
         },
         deleteSubtask: (taskId, subtaskId) => {
             dispatch(deleteSubtask(taskId, subtaskId))
@@ -20,18 +28,19 @@ const mapDispatchToProps = (dispatch) => {
         isTaskComplete: (taskId, boolean) => {
             dispatch(isTaskComplete(taskId, boolean))
         },
-        changeAllSubtask: (taskId, boolean) => {
-            dispatch(changeAllSubtask(taskId, boolean))
+        isAllSubtaskComplete: (taskId, boolean) => {
+            dispatch(isAllSubtaskComplete(taskId, boolean))
         },
         isSubtaskComplete: (taskId, subtaskId, boolean) => {
             dispatch(isSubtaskComplete(taskId, subtaskId, boolean))
         },
-        addSubtask: (taskId, nameSubtask) => {
-            dispatch(addSubtask(taskId, nameSubtask))
+        changeMeanSort: (meanSort) => {
+            dispatch(changeMeanSort(meanSort))
         }
     }
 }
-
-const ToDoContainer = connect(mapStateToProps, mapDispatchToProps)(ToDo);
+const ToDoContainer = compose(
+    connect(mapStateToProps, mapDispatchToProps),
+)(ToDo)
 
 export default ToDoContainer;

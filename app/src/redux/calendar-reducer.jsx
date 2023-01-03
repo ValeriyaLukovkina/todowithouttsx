@@ -1,7 +1,5 @@
 import moment from "moment";
 
-// const date = new Date(2022, 11, 2);
-
 const NEXT_MONTH = 'NEXT_MONTH';
 const PREVIOUS_MONTH = 'NEXT_MONTH';
 
@@ -9,10 +7,16 @@ const year = 2022;
 const month = 6;
 const day = 2;
 
+const listTimeArr = [];  
+for (let i = moment('00:00', 'LT'); i < moment('23:59', 'LT'); i.add(15, 'm')) {
+    listTimeArr.push(i.format('HH:mm'))
+}
+
 const initialState = {
     date: moment,
     startDay: moment().startOf('month').startOf('week'),
     endDay: moment().endOf('month').endOf('week'),
+    listTime: listTimeArr
 }
 
 const calendarReducer = (state = initialState, action) => {

@@ -5,9 +5,10 @@ import styleModal from "./../modal.module.scss";
 import ModalListItem from "./modalListItem";
 import ButtonClose from "../../buttons/buttonClose/buttonClose";
 
-const modalList = ({ tasks, isOpen, onClose, categories, category, taskId, changeTaskCategory }) => {
+const modalList = ({ tasks, isOpen, onClose, categories, taskId, changeTaskCategory, taskCategory, setTemporaryTaskCategory }) => {
     const categoriesItem = categories.map(el => {
-        return <ModalListItem onClose={onClose} tasks={tasks} taskId={taskId} name={el.category} category={category} changeTaskCategory={changeTaskCategory} />
+
+        return <ModalListItem onClose={onClose} tasks={tasks} taskId={taskId} taskCategory={taskCategory} setTemporaryTaskCategory={setTemporaryTaskCategory} titleCategory={el.title}  changeTaskCategory={changeTaskCategory} />
     })
     if (!isOpen) {
         return null
@@ -19,16 +20,13 @@ const modalList = ({ tasks, isOpen, onClose, categories, category, taskId, chang
             <div className={style.modalList}>
                 <div className={style.modalList_title}>
                     <h3 className={style.modalList_title_txt}>Move to:</h3>
-                    <ButtonClose onClose={onClose}/>
+                    <ButtonClose onClose={onClose} />
                 </div>
                 {categoriesItem}
             </div>
         </div>,
         document.body
     )
-    // return (
-    //     <div>{isOpen.toString()}</div>
-    // )
 }
 
 export default modalList

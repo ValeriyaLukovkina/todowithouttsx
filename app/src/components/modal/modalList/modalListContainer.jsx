@@ -6,9 +6,10 @@ import modalList from "./modalList";
 const mapStateToProps = (state, ownProps) => {
     return {
         tasks: state.toDo.tasks,
-        categories: state.toDo.categories,
+        categories: state.categories.categories,
         isOpen: ownProps.isOpen,
-        category: ownProps.category,
+        taskCategory: ownProps.taskCategory,
+        setTemporaryTaskCategory: ownProps.setTemporaryTaskCategory,
         onClose: ownProps.onClose,
         taskId: ownProps.taskId
     }

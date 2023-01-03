@@ -5,6 +5,8 @@
     // top: 0;
     // bottom: 0;
     // left: 0;
+    // position: sticky;
+    // overflow: scroll;
     grid-area: n;
     background-color: $color_dark_todo;
     width: 200px;
@@ -14,6 +16,7 @@
     &_img {
         margin-right: 20px;
     }
+
 }
 
 .name {
@@ -30,14 +33,14 @@
 .item {
     margin: 20px;
     display: flex;
+
+    &_a {
+            color: #FFF;
+    text-decoration: none;
+    word-wrap: break-word;
+    }
     // justify-content: ;
 }
-
-.item a {
-    color: #FFF;
-    text-decoration: none;
-}
-
 
 .today {
     position: relative;
@@ -53,5 +56,99 @@
         font-size: 10px;
         top: 8px;
         left: 4px;
+    }
+}
+
+.categories {
+    &_title {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+        &_name {
+            margin: 0;
+            font-size: 20px;
+        }
+
+        &_count {
+            position: absolute;
+            top: 2px;
+            left: 7px;
+            transform: scale(1);
+            transition: all .5s;
+        }
+
+        &_btn {
+            font-size: 22px;
+            border: none;
+            background-color: transparent;
+            color: $color_text;
+            transform: scale(1);
+            transition: all .5s;
+
+
+            &_wrp {
+                position: relative;
+                z-index: 3;
+            }
+
+            &:hover {
+                color: $color_blue_btn;
+            }
+
+            &_hidden {
+                transform: scale(0);
+            }
+            // position: relative;
+            // &:before {
+            //     content: '';
+            //     position: absolute;
+            //     width: 11px;
+            //     top: 12px;
+            //     left: 0;
+            //     border-top: 1px solid #FFF;
+            // }
+            // &_span {
+            //     border-left: 1px solid transparent;
+            //     position: absolute;
+            //     height: 11px;
+            //     top: 7px;
+            //     left: 5px;
+            //     transition: all .5s;
+
+            //     &_visible {
+            //         border-left: 1px solid #FFF;
+            //     }
+            // }
+
+            // &_plus {
+            //     position: relative;
+            //     &::after {
+            //         content: '';
+            //         position: absolute;
+            //         height: 10px;
+            //         top: 0;
+            //         left: 0;
+            //         border-top: 1px solid #FFF;
+            //     }
+            // }
+        }
+
+        // &_span {
+        //     margin: 0;
+        //     font-size: 20px;
+        // }
+    }
+}
+
+.categoryItem {
+    display: flex;
+    justify-content: space-between;
+
+    &_btn {
+        margin-right: 10px;
+        background-color: transparent;
+        border: none;
+        color: $color_text;
     }
 }

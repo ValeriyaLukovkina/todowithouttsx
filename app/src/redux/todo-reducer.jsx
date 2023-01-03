@@ -1,28 +1,27 @@
-// import { tasksAPI } from '../api/api';
-import { tasksAPI } from '../api/api';
-import data from '../data.json';
-import dataCategories from '../dataCategories.json'
-import { helperAddSubtask, helperDeleteSubtask, updateAllSubtasks, updateObjectInArray, updateObjectInArrayWithExtra } from '../utils/object-helpers';
+import { subtasksAPI, tasksAPI } from '../api/api';
+import { helperAddSubtask, helperChangeSubtask, helperDeleteSubtask, updateAllSubtasks, updateObjectInArray, updateObjectInArrayWithExtra } from '../utils/object-helpers';
 
 const SET_ALL_TASKS = 'SET_ALL_TASKS';
-const DELETE_TASK = 'DELETE_TASK';
-const DELETE_SUBTASK = 'DELETE_SUBTASK';
-const IS_TASK_COMPLETE = 'IS_TASK_COMPLETE';
-const IS_SUBTASK_COMPLETE = 'IS_SUBTASK_COMPLETE';
-const CHANGE_ALL_SUBTASK = 'CHANGE_ALL_SUBTASK';
-const CHANGE_TASK_CATEGORY = 'CHANGE_TASK_CATEGORY';
-const CHOICE_DATE = 'CHOICE_DATE';
-const CHOICE_TIME = 'CHOICE_TIME';
+const ADD_TASK_SUCCESS = 'ADD_TASK_SUCCESS';
+const CHANGE_TASK_NAME_SUCCESS = 'CHANGE_TASK_NAME_SUCCESS';
+const CHANGE_TASK_CATEGORY_SUCCESS = 'CHANGE_TASK_CATEGORY_SUCCESS';
+const IS_TASK_COMPLETE_SUCCESS = 'IS_TASK_COMPLETE_SUCCESS';
+const SET_TASK_DATE_SUCCESS = 'SET_TASK_DATE_SUCCESS';
+const SET_TASK_TIME_SUCCESS = 'SET_TASK_TIME_SUCCESS';
+const DELETE_TASK_SUCCESS = 'DELETE_TASK_SUCCESS';
+const ADD_SUBTASK_SUCCESS = 'ADD_SUBTASK_SUCCESS';
+const ADD_SUBTASK_PREVIOUS = 'ADD_SUBTASK_PREVIOUS';
+const CHANGE_SUBTASK_PREVIOUS = 'CHANGE_SUBTASK_PREVIOUS';
+const DELETE_SUBTASK_PREVIOUS = 'DELETE_SUBTASK_PREVIOUS';
+const IS_SUBTASK_COMPLETE_SUCCESS = 'IS_SUBTASK_COMPLETE_SUCCESS';
+const IS_ALL_SUBTASK_COMPLETE_SUCCESS = 'IS_ALL_SUBTASK_COMPLETE_SUCCESS';
+const CHANGE_SUBTASK_NAME_SUCCESS = 'CHANGE_SUBTASK_NAME_SUCCESS';
 
-const CHANGE_TASK = 'CHANGE_TASK';
-const CHANGE_SUBTASK = 'CHANGE_SUBTASK';
-const ADD_TASK = 'ADD_TASK';
-const ADD_SUBTASK = 'ADD_SUBTASK';
+const DELETE_SUBTASK = 'DELETE_SUBTASK';
 
 
 const initialState = {
-    tasks: data,
-    categories: dataCategories,
+    tasks: [],
 }
 
 const toDoReducer = (state = initialState, action) => {
@@ -32,117 +31,198 @@ const toDoReducer = (state = initialState, action) => {
                 ...state,
                 tasks: action.tasks
             }
-        case DELETE_TASK:
-            return {
-                ...state,
-                tasks: state.tasks.filter(elem => elem.id !== action.id)
-            }
-            case DELETE_SUBTASK:
-                return {
-                    ...state,
-                    tasks: helperDeleteSubtask(state.tasks, action.taskId, action.subtaskId, 'id',),
-                    // state.tasks.filter(elem => elem.id !== action.id)
-                }
-        case IS_TASK_COMPLETE:
-            return {
-                ...state,
-                tasks: updateObjectInArray(state.tasks, action.taskId, 'id', {complete: action.boolean})
-            }
-        case IS_SUBTASK_COMPLETE:
-            return {
-                ...state,
-                tasks: updateObjectInArrayWithExtra(state.tasks, action.taskId, action.subtaskId, 'id', {complete: action.boolean}, 'subtask')
-            }
-            case CHANGE_ALL_SUBTASK:
-                return {
-                    ...state,
-                    tasks: updateAllSubtasks(state.tasks, action.taskId, 'id', {complete: action.boolean}, 'subtask')
-                }
-        case CHANGE_TASK_CATEGORY:
-            return {
-                ...state,
-                tasks: updateObjectInArray(state.tasks, action.taskId, 'id', {category: action.category})
-            }
-            case CHANGE_TASK:
-                debugger
-                return {
-                    ...state,
-                    tasks: updateObjectInArray(state.tasks, action.taskId, 'id', {task: action.nameTask})
-                }
-        case CHANGE_SUBTASK:
-            return {
-                ...state,
-                tasks: updateObjectInArrayWithExtra(state.tasks, action.taskId, action.subtaskId, 'id', {name: action.nameSubtask}, 'subtask')
-            }
-        case ADD_TASK:
+        case ADD_TASK_SUCCESS:
             return {
                 ...state,
                 tasks: [...state.tasks, {
-                    id: 22,
-                    task: action.task,
-                    complete: false
+                    ...action.task
                 }]
             }
-            case ADD_SUBTASK:
-
-                return {
-                    ...state,
-                    tasks: helperAddSubtask(state.tasks, action.taskId, 'id', action.nameSubtask)
-                }
-        case CHOICE_DATE:
+        case CHANGE_TASK_NAME_SUCCESS:
+            return {
+                ...state,
+                tasks: updateObjectInArray(state.tasks, action.taskId, '_id', { nameTask: action.nameTask })
+            }
+        case CHANGE_TASK_CATEGORY_SUCCESS:
+            return {
+                ...state,
+                tasks: updateObjectInArray(state.tasks, action.taskId, '_id', { category: action.category })
+            }
+        case IS_TASK_COMPLETE_SUCCESS:
 
             return {
                 ...state,
-                tasks: updateObjectInArray(state.tasks, action.taskId, 'id', {date: action.date})
+                tasks: updateObjectInArray(state.tasks, action.taskId, '_id', { complete: action.boolean })
             }
-            case CHOICE_TIME:
-  
-                return {
-                    ...state,
-                    tasks: updateObjectInArray(state.tasks, action.taskId, 'id', {time: action.time})
-                }
+        case SET_TASK_DATE_SUCCESS:
+            return {
+                ...state,
+                tasks: updateObjectInArray(state.tasks, action.taskId, '_id', { date: action.date })
+            }
+        case SET_TASK_TIME_SUCCESS:
+            return {
+                ...state,
+                tasks: updateObjectInArray(state.tasks, action.taskId, '_id', { time: action.time })
+            }
+        case DELETE_TASK_SUCCESS:
+            return {
+                ...state,
+                tasks: state.tasks.filter(elem => elem._id !== action.taskId)
+            }
+        case ADD_SUBTASK_PREVIOUS:
+            return {
+                ...state,
+                tasks: helperAddSubtask(state.tasks, action.taskId, '_id', action.subtask)
+            }
+        case CHANGE_SUBTASK_PREVIOUS:
+            return {
+                ...state,
+                tasks: updateObjectInArrayWithExtra(state.tasks, action.taskId, 1, '_id', { nameSubtask: action.nameSubtask }, 'subtask')
+            }
+        case DELETE_SUBTASK_PREVIOUS:
+            return {
+                ...state,
+                tasks: helperDeleteSubtask(state.tasks, action.taskId, 1, '_id',)
+            }
+        case ADD_SUBTASK_SUCCESS:
+            return {
+                ...state,
+                tasks: helperChangeSubtask(state.tasks, action.taskId, '_id', action.subtask)
+            }
+        case IS_SUBTASK_COMPLETE_SUCCESS:
+            return {
+                ...state,
+                tasks: updateObjectInArrayWithExtra(state.tasks, action.taskId, action.subtaskId, '_id', { complete: action.boolean }, 'subtask',)
+            }
+        case CHANGE_SUBTASK_NAME_SUCCESS:
+
+            return {
+                ...state,
+                tasks: updateObjectInArrayWithExtra(state.tasks, action.taskId, action.subtaskId, '_id', { nameSubtask: action.nameSubtask }, 'subtask')
+            }
+        case IS_ALL_SUBTASK_COMPLETE_SUCCESS:
+
+            return {
+                ...state,
+                tasks: updateAllSubtasks(state.tasks, action.taskId, '_id', { complete: action.boolean }, 'subtask')
+            }
+
+        case DELETE_SUBTASK:
+            return {
+                ...state,
+                tasks: helperDeleteSubtask(state.tasks, action.taskId, action.subtaskId, 'id',),
+            }
         default:
             return state
     }
 }
 
-export const setTask = (tasks) => ({type: SET_ALL_TASKS, tasks})
-export const deleteTask = (id) => ({ type: DELETE_TASK, id });
+export const setTask = (tasks) => ({ type: SET_ALL_TASKS, tasks });
+export const addTaskSuccess = (task) => ({ type: ADD_TASK_SUCCESS, task });
+export const changeTaskNameSuccess = (taskId, nameTask) => ({ type: CHANGE_TASK_NAME_SUCCESS, taskId, nameTask });
+export const changeTaskCategorySuccess = (taskId, category) => ({ type: CHANGE_TASK_CATEGORY_SUCCESS, taskId, category });
+export const isTaskCompleteSuccess = (taskId, boolean) => ({ type: IS_TASK_COMPLETE_SUCCESS, taskId, boolean });
+export const setTaskDateSuccess = (taskId, date) => ({ type: SET_TASK_DATE_SUCCESS, taskId, date });
+export const setTaskTimeSuccess = (taskId, time) => ({ type: SET_TASK_TIME_SUCCESS, taskId, time });
+export const deleteTaskSuccess = (taskId) => ({ type: DELETE_TASK_SUCCESS, taskId });
+export const addSubtaskPrevious = (taskId, nameSubtask) => ({ type: ADD_SUBTASK_PREVIOUS, taskId, subtask: { _id: 1, nameSubtask, complete: false } });
+export const deleteSubtaskPrevious = (taskId) => ({ type: DELETE_SUBTASK_PREVIOUS, taskId });
+export const isSubtaskCompleteSuccess = (taskId, subtaskId, boolean) => ({ type: IS_SUBTASK_COMPLETE_SUCCESS, taskId, subtaskId, boolean });
+export const isAllSubtaskCompleteSuccess = (taskId, boolean) => ({ type: IS_ALL_SUBTASK_COMPLETE_SUCCESS, taskId, boolean });
+export const changeSubtaskPrevious = (taskId, nameSubtask) => ({ type: CHANGE_SUBTASK_PREVIOUS, taskId, nameSubtask });
+export const addSubtaskSuccess = (taskId, subtask) => ({ type: ADD_SUBTASK_SUCCESS, taskId, subtask });
+export const changeSubtaskNameSuccess = (taskId, subtaskId, nameSubtask) => ({ type: CHANGE_SUBTASK_NAME_SUCCESS, taskId, subtaskId, nameSubtask });
+
 export const deleteSubtask = (taskId, subtaskId) => ({ type: DELETE_SUBTASK, taskId, subtaskId });
-export const isTaskComplete = (taskId, boolean) => ({ type: IS_TASK_COMPLETE, taskId, boolean });
-export const isSubtaskComplete = (taskId, subtaskId, boolean) => ({ type: IS_SUBTASK_COMPLETE, taskId, subtaskId, boolean });
-export const changeAllSubtask = (taskId, boolean) => ({ type: CHANGE_ALL_SUBTASK, taskId, boolean });
-// export const isAllSubtaskUncomplete = (taskId, subtaskId, boolean) => ({ type: IS_ALL_SUBTASK_UNCOMPLETE, taskId, subtaskId, boolean });
-export const changeTaskCategory = (taskId, category) => ({ type: CHANGE_TASK_CATEGORY, taskId, category });
-export const changeTask = (taskId, nameTask) => ({ type: CHANGE_TASK, taskId, nameTask });
-export const changeSubtask = (taskId, subtaskId, nameSubtask) => ({ type: CHANGE_SUBTASK, taskId, subtaskId, nameSubtask });
-export const addTask = (task) => ({ type: ADD_TASK, task });
-export const addSubtask = (taskId, nameSubtask) => ({ type: ADD_SUBTASK, taskId,nameSubtask });
-export const choiceDate = (taskId, date) => ({ type: CHOICE_DATE, taskId, date });
-export const choiceTime = (taskId, time) => ({ type: CHOICE_TIME, taskId, time });
 
-// export const getAllTasks = () => async (dispatch) => {
-//     debugger
-// let response = await tasksAPI.getAllTasks();
-// if (response.resultCode === 0) {
-//     dispatch(setTask(response.tasks))
-// } else {
-//     console.log('not load')
-// }   
-// }
+export const getAllTasks = (userId) => async (dispatch) => {
+    let response = await tasksAPI.getAllTasks(userId);
+    if (response.resultCode === 0) {
+        dispatch(setTask(response.tasks))
+    } else {
+        console.log('not load')
+    }
+}
 
-// export const updateNameTask = (taskId, name) => async (dispatch) => {
-//     let promise = await tasksAPI.updateNameTask(taskId, name);
-//     debugger
-//     if (promise.resultCode === 0) {
-//         dispatch(changeTask(taskId, name))
-//         debugger
-//     }
-//     debugger
-// }
+export const addTask = (userId, nameTask, date, time, category) => async (dispatch) => {
+    let response = await tasksAPI.addTask(userId, nameTask, date, time, category)
+    if (response.resultCode === 0) {
+        dispatch(addTaskSuccess(response.task))
+    }
+}
 
-// export const getAllTasks = () => async (dispatch) => {
-//     let promise = await tasksAPI.getAllTasks();
-//     dispatch(setTask(promise))
-// }
+export const changeTaskName = (taskId, nameTask) => async (dispatch) => {
+    let response = await tasksAPI.changeTaskName(taskId, nameTask);
+    if (response.resultCode === 0) {
+        dispatch(changeTaskNameSuccess(taskId, nameTask))
+    }
+}
+
+export const changeTaskCategory = (taskId, category) => async (dispatch) => {
+    let response = await tasksAPI.changeTaskCategory(taskId, category);
+    if (response.resultCode === 0) {
+        dispatch(changeTaskCategorySuccess(taskId, category))
+    }
+}
+
+export const isTaskComplete = (taskId, boolean) => async (dispatch) => {
+    let response = await tasksAPI.isTaskComplete(taskId, boolean);
+    if (response.resultCode === 0) {
+        dispatch(isTaskCompleteSuccess(taskId, boolean))
+    }
+}
+
+export const setTaskDate = (taskId, date) => async (dispatch) => {
+    let response = await tasksAPI.setTaskDate(taskId, date);
+    if (response.resultCode === 0) {
+        dispatch(setTaskDateSuccess(taskId, date))
+    }
+}
+
+export const deleteTask = (taskId) => async (dispatch) => {
+    let response = await tasksAPI.deleteTask(taskId)
+    if (response.resultCode === 0) {
+        dispatch(deleteTaskSuccess(taskId))
+    }
+
+}
+
+export const setTaskTime = (taskId, time) => async (dispatch) => {
+    let response = await tasksAPI.setTaskTime(taskId, time);
+    if (response.resultCode === 0) {
+        dispatch(setTaskTimeSuccess(taskId, time))
+    }
+}
+
+export const addSubtask = (taskId, nameSubtask) => async (dispatch) => {
+    let response = await subtasksAPI.addSubtask(taskId, nameSubtask);
+    if (response.resultCode === 0) {
+        dispatch(addSubtaskSuccess(taskId, response.subtask))
+    }
+}
+
+export const isSubtaskComplete = (taskId, subtaskId, boolean) => async (dispatch) => {
+    let response = await subtasksAPI.isSubtaskComplete(taskId, subtaskId, boolean);
+    if (response.resultCode === 0) {
+        dispatch(isSubtaskCompleteSuccess(taskId, subtaskId, boolean))
+    } else {
+        console.log(response.message)
+        dispatch(isSubtaskCompleteSuccess(taskId, subtaskId, !boolean))
+    }
+}
+
+export const isAllSubtaskComplete = (taskId, boolean) => async (dispatch) => {
+    let response = await subtasksAPI.isAllSubtaskComplete(taskId, boolean);
+    if (response.resultCode === 0) {
+        dispatch(isAllSubtaskCompleteSuccess(taskId, boolean))
+    }
+}
+
+export const changeSubtaskName = (taskId, subtaskId, nameSubtask) => async (dispatch) => {
+    let response = await subtasksAPI.changeSubtaskName(taskId, subtaskId, nameSubtask);
+    if (response.resultCode === 0) {
+        dispatch(changeSubtaskNameSuccess(taskId, subtaskId, nameSubtask))
+    }
+}
+
 export default toDoReducer;

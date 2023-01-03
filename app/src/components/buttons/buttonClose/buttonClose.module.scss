@@ -1,44 +1,44 @@
 @import './../../../commonScss/colors.scss';
 
 .btn {
-        border: none;
-        position: relative;
-        background: transparent;
-        width: 30px;
-        height: 30px;
+    border: none;
+    position: relative;
+    background: transparent;
+    width: 30px;
+    height: 30px;
 
-        &:hover:before,
-        &:hover:after {
-            border-bottom: 1px solid $color_choose;
-        }
+    &:hover:before,
+    &:hover:after {
+        border-bottom: 1px solid $color_choose;
+    }
 
-        // display: block;
+    // display: block;
 
-        &:before {
-            content: '';
-            position: absolute;
-            top: 15px;
-            left: 7px;
-            width: 15px;
-            border-bottom: 1px solid $color_text_dark;
-            transform: rotate(45deg);
+    &:before {
+        content: '';
+        position: absolute;
+        top: 15px;
+        left: 7px;
+        width: 15px;
+        border-bottom: 1px solid $color_text_dark;
+        transform: rotate(45deg);
 
-            // &:hover {
-            //     border-bottom: 1px solid $color_choose;
-            // }
-        }
+        // &:hover {
+        //     border-bottom: 1px solid $color_choose;
+        // }
+    }
 
-        &:after {
-            content: '';
-            position: absolute;
-            top: 15px;
-            left: 7px;
-            width: 15px;
-            border-bottom: 1px solid $color_text_dark;
-            transform: rotate(-45deg);
+    &:after {
+        content: '';
+        position: absolute;
+        top: 15px;
+        left: 7px;
+        width: 15px;
+        border-bottom: 1px solid $color_text_dark;
+        transform: rotate(-45deg);
 
-            // &:hover {
-            //     border-bottom: 1px solid $color_choose;
-            // }
-        }
+        // &:hover {
+        //     border-bottom: 1px solid $color_choose;
+        // }
+    }
 }

@@ -1,23 +1,24 @@
 import React from "react";
 import style from "./modalList.module.scss"
 
-const ModalListItem = ({ tasks, taskId, name, category, changeTaskCategory, onClose }) => {
-
-    // const chooseCategory = tasks.filter(el => el.id === taskId)[0].category
-    // const [chooseCategory, setChooseCategory] = useState()
+const ModalListItem = ({ tasks, taskId, taskCategory, titleCategory, changeTaskCategory, onClose, setTemporaryTaskCategory }) => {
     const onChange = () => {
-        changeTaskCategory(taskId, name);
+        if (taskId) {
+            changeTaskCategory(taskId, titleCategory);
+        } else {
+            setTemporaryTaskCategory(titleCategory)
+        }
         onClose()
     }
     return (
         <div className={style.modalList_item}>
             <button
                 onClick={onChange}
-                className={`${style.modalList_item_btn} ${category !== name && style.modalList_item_btn_add} `}
+                className={`${style.modalList_item_btn} ${titleCategory !== taskCategory && style.modalList_item_btn_add} `}
             >
-                {name}
+                {titleCategory}
             </button>
-            {category === name && <div className={style.modalList_item_choose}></div>}
+            {titleCategory === taskCategory && <div className={style.modalList_item_choose}></div>}
         </div>
     )
 }

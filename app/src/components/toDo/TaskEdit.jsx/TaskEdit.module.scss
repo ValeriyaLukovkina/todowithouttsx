@@ -3,8 +3,6 @@
 .svg {
     margin-right: 10px;
     stroke: red !important;
-    // color: red;
-    // fill: aqua;
 
     &:hover {
             fill: red;
@@ -26,13 +24,11 @@
 
     &_block {
         display: flex;
-        // justify-content: space-between;
         align-items: center;
 
         &_btn {
             background-color: transparent;
             border: none;
-            // padding: 0px;
         }
 
         &_close {}
@@ -58,56 +54,3 @@
         margin-right: 10px;
     }
 }
-
-// .form {
-//     display: flex;
-//     justify-content: space-around;
-
-//     &_input {
-//         width: 75%;
-//         border: 1px solid $color_grey_todo;
-//         background-color: $color_grey_todo;
-//         border-radius: 20px;
-//         color: $color_text;
-//         padding: 8px;
-
-//         &:focus {
-//             border: 1px solid $color_blue_btn;
-//             outline: none;
-//             color: $color_text;
-//             caret-color: $color_blue_btn;
-//         }
-//     }
-
-//     &_btn {
-//         width: 40px;
-//         height: 40px;
-//         background-color: $color_blue_btn;
-//         border-radius: 50%;
-//         border: none;
-//         position: relative;
-
-//         &:after {
-//             content: '';
-//             position: absolute;
-//             right: 18px;
-//             top: 10px;
-//             height: 20px;
-//             border-right: 3px solid $color_text;
-//             border-radius: 10px;
-//         }
-
-//         &:before {
-//             content: '';
-//             position: absolute;
-//             right: 13px;
-//             top: 10px;
-//             height: 10px;
-//             width: 10px;
-//             border-right: 3px solid $color_text;
-//             border-top: 3px solid $color_text;
-//             transform: rotate(-45deg);
-//             border-radius: 3px;
-//         }
-//     }
-// }

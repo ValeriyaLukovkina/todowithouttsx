@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { changeTask } from "../../../redux/todo-reducer";
+import { changeTaskName } from "../../../redux/todo-reducer";
 import FormEditTask from "./FormEditTask";
 
 const mapStateToProps = (state, ownProps) => {
@@ -12,6 +12,6 @@ const mapStateToProps = (state, ownProps) => {
     }
 }
 
-const FormEditTaskContainer = connect(mapStateToProps, { changeTask })(FormEditTask)
+const FormEditTaskContainer = connect(mapStateToProps, { changeTaskName })(FormEditTask)
 
 export default FormEditTaskContainer;

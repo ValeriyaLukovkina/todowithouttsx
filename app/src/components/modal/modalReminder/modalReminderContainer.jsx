@@ -7,10 +7,13 @@ const mapStateToProps = (state, ownProps) => {
         tasks: state.toDo.tasks,
         date: ownProps.date,
         time: ownProps.time,
-        taskId: ownProps.taskId
+        taskId: ownProps.taskId,
+        setTemporaryDate: ownProps.setTemporaryDate,
+        setTemporaryTime: ownProps.setTemporaryTime,
+        setTemporaryTaskCategory: ownProps.setTemporaryTaskCategory,
     }
 }
 
-const ModalReminderContainer = connect(mapStateToProps, {  })(ModalReminder);
+const ModalReminderContainer = connect(mapStateToProps, {})(ModalReminder);
 
 export default ModalReminderContainer;

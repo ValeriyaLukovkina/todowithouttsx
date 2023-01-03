@@ -1,24 +1,108 @@
+@import './../../commonScss/colors.scss';
+@import './../../commonScss/fonts.scss';
+
 .header {
     display: flex;
     justify-content: space-between;
-    &_date {
-        display: flex;
+    margin: 10px;
+
+    &_wrp {
+        background-color: #fff;
     }
+
     &_block {
         display: flex;
+        font-size: 24px;
+        justify-content: space-between;
+
+        &_date {
+            display: flex;
+            margin-right: 10px;
+
+            &_p {
+                margin: 10px 5px;
+            }
+        }
+
+        &_choose {
+            display: flex;
+
+            &_btn {
+                background-color: transparent;
+                border: none;
+                font-size: 20px;
+                font-weight: 300;
+            }
+        }
+
     }
 }
+
 .calendar {
+    // height: 80vh;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
+
     grid-gap: 1px;
-    background-color: #f0f0f0;
+    background-color: $color_text_3;
+
+    &_wrp {
+        display: grid;
+        height: 100vh;
+        grid-template-rows: 20% 80%;
+        margin: 10px;
+    }
+
+    &_weekday {
+        background-color: #fff;
+    }
 
     &_cell {
+
         min-width: 100px;
-        min-height: 70px;
-        background-color: #000000;
+        min-height: 100px;
+        background-color: #fff;
         color: #ffffff;
+
+        &_p {
+            font-size: 14px;
+            color: $color_text_3;
+            text-align: center;
+            margin: 0;
+
+        }
+
+        &_tasks {
+            position: relative;
+            color: $color_text_dark;
+            display: grid;
+            grid-auto-flow: column;
+
+            &_list {
+                padding: 0;
+                list-style-type: none;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            &_one {
+                text-overflow: ellipsis;
+                overflow: hidden;
+                border: none;
+                border-radius: 20px;
+                margin: 5px;
+                padding: 0 5px;
+            }
+
+            &_task {
+                background-color: $color_blue_btn;
+            }
+
+            &_btn {
+                border: none;
+                background-color: transparent;
+            }
+        }
 
         &_current {
             color: red;

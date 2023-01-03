@@ -3,6 +3,7 @@
 .wrp {
     position: relative;
 }
+
 .form {
     &_input {
         width: calc(100% - 32px);
@@ -50,6 +51,7 @@
         &:hover {
             background-color: $color_grey_hover;
         }
+
         &_btn {
             background-color: transparent;
             border: none;

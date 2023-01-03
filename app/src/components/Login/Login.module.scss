@@ -1,0 +1,88 @@
+@import '../../commonScss/colors.scss';
+@import '../../commonScss/fonts.scss';
+
+.login {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.sign {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &_link {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        &_text {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        &_nav {
+            margin-left: 10px;
+            font-size: 14px;
+            text-decoration: none;
+            color: $color_blue_btn;
+        }
+    }
+
+    &_form {
+        margin: 10px;
+
+        &_block {
+            position: relative;
+            margin: 10px;
+
+            &_input {
+                height: 54px;
+                width: 300px;
+                border: 1px solid black;
+                border-radius: 20px;
+                color: $color_text_dark;
+                font-size: 20px;
+                padding: 5px 30px;
+
+
+            }
+
+            &_input:focus~&_span_focus {
+                font-size: 16px;
+                color: $color_text_3;
+                top: 0px;
+                left: 13px;
+            }
+
+            &_span {
+                position: absolute;
+                font-size: 20px;
+                color: $color_text_dark;
+                top: 21px;
+                left: 30px;
+                transition: all .5s;
+
+                &_active {
+                    font-size: 16px;
+                    color: $color_text_3;
+                    top: 0px;
+                    left: 13px;
+
+                }
+            }
+
+            &_btn {
+                height: 54px;
+                width: 100%;
+                border: 1px solid black;
+                border-radius: 20px;
+                color: #282828;
+                font-size: 20px;
+                background-color: $color_blue_btn;
+            }
+        }
+    }
+
+
+}

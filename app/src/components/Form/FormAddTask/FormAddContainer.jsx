@@ -6,6 +6,7 @@ import FormAddTaks from "./FormAddTaks";
 const mapStateToProps = (state) => {
     return {
         tasks: state.toDo.tasks,
+        userId: state.auth.userId,
     }
 }
 

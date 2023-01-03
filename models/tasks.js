@@ -1,12 +1,8 @@
-import mongoose from "mongoose";
+import mongoose, { Types } from "mongoose";
 const Schema = mongoose.Schema;
 
 const tasksSchema = new Schema({
-    id: {
-        type: Number,
-        required: true,
-    },
-    task: {
+    nameTask: {
         type: String,
         required: true,
     },
@@ -16,14 +12,34 @@ const tasksSchema = new Schema({
     },
     date: {
         type: Date,
-        required: true,
+        // required: true,
+    },
+    time: {
+        type: Date,
+        // required: true,
     },
     category: {
         type: String,
+        // required: true,
+    },
+    owner: {
+        type: Types.ObjectId, ref: 'User',
         required: true,
     },
+    subtask: [
+        {
+            nameSubtask: {
+                type: String,
+                required: true,
+            },
+            complete: {
+                type: Boolean,
+                required: true,
+            }
+        }
+    ]
 }, { collection: 'Tasks' });
 
 export const Tasks = mongoose.model('Tasks', tasksSchema)
-    .find({}, { _id: 0 })
-    .sort({ date: 1 })
+    // .find({}, { _id: 0 })
+    // .sort({ owner: 1 })

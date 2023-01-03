@@ -1,0 +1,13 @@
+@import './../../../commonScss/colors.scss';
+
+.modalCategory {
+    width: 400px;
+    height: 165px;
+    background-color: $color_grey_todo;
+    border-radius: 20px;
+    z-index: 2;
+
+    &_title {
+        margin: 10px;
+    }
+}

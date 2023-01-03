@@ -5,7 +5,7 @@ import style from "./formWithDate.module.scss";
 import { useState } from "react";
 
 
-const ChoiceDate = ({ date, taskId, choiceDate, }) => {
+const ChoiceDate = ({ date, taskId, setTaskDate, setTemporaryDate}) => {
     const [initDate, setInitDate] = useState(undefined)
     useEffect(() => {
         if (date) {
@@ -29,10 +29,11 @@ const ChoiceDate = ({ date, taskId, choiceDate, }) => {
                     return errors;
                 }}
                 onSubmit={values => {
-
-                    choiceDate(taskId, moment(values))
-                    // console.log(values)
-                    // props.addTask(values.task)
+                    if (taskId) {
+                        setTaskDate(taskId, moment(values))
+                    } else  {
+                        setTemporaryDate(moment(values))
+                    }
                 }}
             >
                 {({
@@ -56,9 +57,6 @@ const ChoiceDate = ({ date, taskId, choiceDate, }) => {
 
                         />
                         {errors.task && touched.task && errors.task}
-                        {/* <button className={style.form_btn} type="submit">
-                            send
-                        </button> */}
                     </form>
                 )}
             </Formik>

@@ -1,38 +1,51 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Formik } from "formik";
 import moment from "moment";
 import style from "./formWithDate.module.scss";
-import { useState } from "react";
-import { useEffect } from "react";
 
 
-const ChoiceTime = ({ choiceTime, taskId, time }) => {
+const ChoiceTime = ({ setTaskTime, taskId, time, date, setTemporaryTime, listTime }) => {
     const [showChoiceTime, setShowChoiceTime] = useState(false);
-    const listTimeArr = [];
-    for (let i = moment('00:00', 'LT'); i < moment('23:59', 'LT'); i.add(15, 'm')) {
-        listTimeArr.push(i.format('LT'))
-    }
-    const listTime = listTimeArr.map(el => {
+    const [newListTime, setNewListTime] = useState(listTime)
+    debugger
+    useEffect(() => {
+        if (!date || moment().isSame(date, 'day')) {
+            const temporary = listTime.filter(el => {
+                return moment().format('HH:mm') < el
+            })
+            setNewListTime(temporary)
+        } else {
+            setNewListTime(listTime)
+        }     
+    }, [date])
 
-        return (
+    const [initTime, setInitTime] = useState(undefined);
+    useEffect(() => {
+        debugger
+        if (time) {
+            setInitTime(moment(time).format('HH:mm'))
+        } else {
+            setInitTime(moment().format('HH:mm'))
+        }
+    }, [time]);
+
+    const listTimeEl = newListTime && newListTime.map(el => {
+        debugger
+        return ( 
             <div key={el} className={style.time_item}>
                 <button
-                    onClick={() => choiceTime(taskId, moment(`${el}`, 'LT'))}
+                    onClick={() => {
+                        if (taskId) {
+                            setTaskTime(taskId, moment(`${el}`, 'HH:mm'))
+                        } else {
+                            setTemporaryTime(moment(`${el}`, 'HH:mm'))
+                        }
+
+                    }}
                     className={style.time_item_btn}>{el}</button>
             </div>
         )
     })
-
-
-    const [initTime, setInitTime] = useState(undefined)
-    useEffect(() => {
-
-        if (time) {
-            setInitTime(moment(time).format('LT'))
-        } else {
-            setInitTime(moment().format('LT'))
-        }
-    }, [time]);
 
     const handleFocus = () => {
         setShowChoiceTime(true)
@@ -53,10 +66,14 @@ const ChoiceTime = ({ choiceTime, taskId, time }) => {
                     return errors;
                 }}
                 onSubmit={values => {
-                    choiceTime(taskId, moment(`${values}`, 'LT'))
+                    if (taskId) {
+                        setTaskTime(taskId, moment(`${values}`, 'LT'))
+                    } else {
+                        setTemporaryTime(moment(`${values}`, 'LT'))
+                    }
                 }}
                 onFocus={values => {
-                    choiceTime(taskId, moment(`${values}`, 'LT'))
+                    setTaskTime(taskId, moment(`${values}`, 'LT'))
                 }}
             >
                 {({
@@ -82,21 +99,13 @@ const ChoiceTime = ({ choiceTime, taskId, time }) => {
                                 onBlur={handleBlur}
 
                             />
-                            {/* {errors.task && touched.task && errors.task} */}
-                            {/* <button className={style.form_btn} type="submit">
-                            send
-                        </button> */}
                         </form>
                         <div className={`${showChoiceTime && style.time_visible} ${style.time}`}>
-                            {listTime}
+                            {listTimeEl}
                         </div>
-                        {/* <button onClick={() => setShowChoiceTime(!showChoiceTime)}>ff</button> */}
                     </div>
                 )}
             </Formik>
-            {/* <div className={style.listTime}>
-                {listTime}
-            </div> */}
         </>
     )
 }

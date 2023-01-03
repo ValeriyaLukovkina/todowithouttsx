@@ -1,8 +1,6 @@
 @import './../../../commonScss/colors.scss';
 
-.wrp {
-
-}
+.wrp {}
 
 .form {
     display: flex;
@@ -13,13 +11,13 @@
         border: 1px solid $color_grey_todo;
         background-color: $color_grey_todo;
         border-radius: 20px;
-        color: $color_text;
+        color: $color_text_dark;
         padding: 8px;
 
         &:focus {
             border: 1px solid $color_blue_btn;
             outline: none;
-            color: $color_text;
+            color: $color_text_dark;
             caret-color: $color_blue_btn;
         }
     }
@@ -31,7 +29,7 @@
         border-radius: 50%;
         border: none;
         position: relative;
-        
+
         &:after {
             content: '';
             position: absolute;
@@ -53,6 +51,60 @@
             border-top: 3px solid $color_text;
             transform: rotate(-45deg);
             border-radius: 3px;
+        }
+    }
+}
+
+.setting {
+    position: absolute; 
+    top: -32px; 
+    left: 0; 
+    right: 0;
+
+    &_wrp {
+        display: flex; 
+        justify-content: space-around; 
+        padding: 12px;
+        width: 100%;
+        transform: scaleY(0);
+        transform-origin: center bottom;
+        background-color: $color_dark_todo; 
+        transition: transform .5s;
+
+        &_visible {
+            transform: scaleY(1);
+            // transition: all .5s;
+        }
+    }
+
+    &_block {
+        position: relative;
+        flex: 1 1;
+        text-align: center;
+
+        &:hover &_btn {
+            color: $color_blue_btn;
+        }
+
+        &_btn {
+            color: $color_text;
+            text-transform: uppercase;
+            background-color: transparent;
+            border: 0px solid transparent;
+        }
+
+        &:after {
+            content: '';
+            position: absolute;
+            top: 7px;
+            right: 0;
+            border-right: 1px solid $color_text;
+            height: 10px;
+        }
+
+        &:nth-last-child(1):after {
+            content: '';
+            border: none;
         }
     }
 }

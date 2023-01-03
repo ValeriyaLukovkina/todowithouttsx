@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { changeSubtask, deleteSubtask } from "../../../redux/todo-reducer";
+import { addSubtask, changeSubtaskPrevious, changeSubtaskName, deleteSubtaskPrevious } from "../../../redux/todo-reducer";
 import FormAddSubtask from "./FormAddSubtask";
 
 const mapStateToProps = (state, ownProps) => {
@@ -15,6 +15,6 @@ const mapStateToProps = (state, ownProps) => {
     }
 }
 
-const FormAddSubtaskContainer = connect(mapStateToProps, { changeSubtask, deleteSubtask})(FormAddSubtask)
+const FormAddSubtaskContainer = connect(mapStateToProps, { changeSubtaskName, deleteSubtaskPrevious, addSubtask, changeSubtaskPrevious })(FormAddSubtask)
 
 export default FormAddSubtaskContainer;

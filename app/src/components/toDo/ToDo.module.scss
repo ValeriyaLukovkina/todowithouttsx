@@ -1,33 +1,43 @@
 @import './../../commonScss/colors.scss';
+@import './../../commonScss/fonts.scss';
 
 .wrp {
-    // display: flex;
-    // justify-content: space-around;
+    display: grid;
+    // height: ;
+    grid-template-rows: 14fr 1fr;
 }
 
-.title {
+.header {
+    display: flex;
+    justify-content: left;
 
+    &_title {
+
+    }
+
+    &_sort {
+        display: flex;
+        align-items: center;
+        &_text {
+
+        }
+
+        &_btn {
+            background-color: transparent;
+            border: none;
+        }
+    }
 }
 
 .todo {
-    // width: 40%;
-    // max-height: 650px;
-    // background-color: $color_dark_todo;
-    // color: $white;
     display: flex;
     flex-direction: column;
-    overflow: scroll;
     position: relative;
     border-radius: 20px;
-
-    // &_one {
-
-    // }
-
+    overflow: scroll;
 }
 
 .task {
-    // border: 1px solid red;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -52,14 +62,6 @@
         width: 100%;
         margin: 5px 10px;
 
-        // &_category {
-        //     position: absolute;
-        //     bottom: 0;
-        //     left: 0;
-        //     color: $color_text_3;
-        //     font-size: 12px;
-        // }
-
         &_line {
             width: 100%;
             position: absolute;
@@ -76,7 +78,6 @@
         }
 
         &_edit {
-            // margin: 10px;
     font-size: 20px;
     font-weight: 300;
         }
@@ -146,7 +147,6 @@
             border-left: 2px solid $color_grey_btn;
             border-bottom: 2px solid $color_grey_btn;
             border-radius: 2px;
-            // background-color: $color_grey_btn;
             transform: rotate(-45deg) scale(0);
             transition: all .5s;
 
@@ -171,7 +171,6 @@
     }
 
     &_delete {
-        // width: 10px;
         width: 18px;
         height: 18px;
         border: 1px solid $color_grey_btn;
@@ -222,10 +221,6 @@
                 transform: rotate(45deg);
             }
         }
-
-        // &_hidden {
-        //     transform: scale(0);
-        // }
     }
 
     &_show_more {
@@ -238,24 +233,47 @@
         font-size: 12px;
         z-index: 1;
     }
+
+    &_block {
+        &_title {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+
+        &_text {
+
+        }
+
+        &_span {
+            background-color: #E5E5E5;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 20px;
+            transform: scale(0);
+            transition: all .5s;
+
+            &_visible {
+                transform: scale(1);
+            }
+        }
+    }
+    }
 }
 
 .subtask {        
     display: flex;
-    // justify-content: space-between;
     align-items: center;
-    // margin: 5px;
 
     &_wrp {
         margin-left: 30px;
-        // display: flex;
-        // flex-direction: column;
-
     }
 
     &_btn {
         border-radius: 0;
-
     }
 
     &_text {
@@ -266,7 +284,6 @@
     }
 
     &_changes {
-
         &_btn {
             border: none;
             border-radius: 20px;
@@ -281,7 +298,6 @@
 
         &_list {
             background-color:goldenrod
-
         }
     }
 }
@@ -290,7 +306,7 @@
 .footer {
     position: sticky;
     width: 100%;
-    background-color: $color_dark_todo_bottom;
+    background-color: $color_dark_todo;
     padding: 12px 0;
     bottom: 0px;
     right: 0px;

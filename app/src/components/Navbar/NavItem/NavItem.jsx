@@ -2,11 +2,11 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import style from './../Navbar.module.scss';
 
-const NavItem = (props) => {
+const NavItem = ({logo, link, title}) => {
     return (
         <div className={style.item}>
-            <img className={style.nav_img} src={props.logo} alt='icon' />
-            <NavLink to={props.link} className={({ isActive }) => isActive ? style.active : undefined}>{props.title}</NavLink>
+            {logo && <img className={style.nav_img} src={logo} alt='icon' />}
+            <NavLink to={link} className={style.item_a}>{title}</NavLink>
         </div>
     )
 }
