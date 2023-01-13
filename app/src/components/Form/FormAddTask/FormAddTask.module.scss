@@ -1,18 +1,18 @@
 @import './../../../commonScss/colors.scss';
 
-.wrp {}
-
 .form {
-    display: flex;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: auto 40px;
+    margin: 0 10px 0 10px;
+    box-sizing: border-box;
 
     &_input {
-        width: 75%;
         border: 1px solid $color_grey_todo;
         background-color: $color_grey_todo;
         border-radius: 20px;
         color: $color_text_dark;
         padding: 8px;
+        margin: 0 10px 0 0;
 
         &:focus {
             border: 1px solid $color_blue_btn;
@@ -56,24 +56,23 @@
 }
 
 .setting {
-    position: absolute; 
-    top: -32px; 
-    left: 0; 
+    position: absolute;
+    top: -32px;
+    left: 0;
     right: 0;
 
     &_wrp {
-        display: flex; 
-        justify-content: space-around; 
+        display: flex;
+        justify-content: space-around;
         padding: 12px;
         width: 100%;
         transform: scaleY(0);
         transform-origin: center bottom;
-        background-color: $color_dark_todo; 
+        background-color: $color_dark_todo;
         transition: transform .5s;
 
         &_visible {
             transform: scaleY(1);
-            // transition: all .5s;
         }
     }
 

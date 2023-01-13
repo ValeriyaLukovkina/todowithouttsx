@@ -7,7 +7,7 @@ import style from "./formWithDate.module.scss";
 const ChoiceTime = ({ setTaskTime, taskId, time, date, setTemporaryTime, listTime }) => {
     const [showChoiceTime, setShowChoiceTime] = useState(false);
     const [newListTime, setNewListTime] = useState(listTime)
-    debugger
+
     useEffect(() => {
         if (!date || moment().isSame(date, 'day')) {
             const temporary = listTime.filter(el => {
@@ -21,7 +21,7 @@ const ChoiceTime = ({ setTaskTime, taskId, time, date, setTemporaryTime, listTim
 
     const [initTime, setInitTime] = useState(undefined);
     useEffect(() => {
-        debugger
+
         if (time) {
             setInitTime(moment(time).format('HH:mm'))
         } else {
@@ -30,7 +30,7 @@ const ChoiceTime = ({ setTaskTime, taskId, time, date, setTemporaryTime, listTim
     }, [time]);
 
     const listTimeEl = newListTime && newListTime.map(el => {
-        debugger
+
         return ( 
             <div key={el} className={style.time_item}>
                 <button
@@ -81,7 +81,6 @@ const ChoiceTime = ({ setTaskTime, taskId, time, date, setTemporaryTime, listTim
                     errors,
                     touched,
                     handleChange,
-                    // handleBlur,
                     handleSubmit,
 
                 }) => (

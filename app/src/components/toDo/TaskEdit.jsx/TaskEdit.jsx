@@ -1,6 +1,6 @@
 import React from "react";
 import { Formik } from "formik";
-import style from "./TaskEdit.module.scss";
+import style from "./taskEdit.module.scss";
 import logoBell from './../../../assests/svg/Bell.svg';
 import logoCheck from './../../../assests/svg/Check.svg';
 import logoFolder from './../../../assests/svg/Folder.svg';

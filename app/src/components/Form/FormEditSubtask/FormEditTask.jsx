@@ -3,15 +3,12 @@ import Form from "../Form";
 
 
 const FormEditTask = ({ nameTask, taskId, changeTaskName, setEditTask }) => {
-    // const [oldNameSubtask, setOldNameSubtask] = useState(nameTask)
     const handleBlur = (newNameTask) => {
 
         if (newNameTask.trim()) {
             changeTaskName(taskId, newNameTask);
             setEditTask(null)
-            // setOldNameSubtask(newNameSubtask)
         } else {
-            // changeTask(taskId, taskId, oldNameSubtask)
             setEditTask(null)
         }
     }

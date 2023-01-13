@@ -1,8 +1,8 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import FormAddContainer from "../../Form/FormAddTask/FormAddContainer";
+import FormAddContainer from "../../form/formAddTask/FormAddContainer";
 import TaskBlock from "../TaskBlock";
-import style from './../ToDo.module.scss';
+import style from './../toDo.module.scss';
 
 const ToDoCategory = (props) => {
 

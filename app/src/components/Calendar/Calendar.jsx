@@ -1,21 +1,17 @@
-import React, { useState } from "react";
-import style from "./Calendar.module.scss";
+import React, { useState, useEffect } from "react";
+import style from "./calendar.module.scss";
 import moment from "moment";
-import CalendarCell from "./CalendarCell";
+import { useRef } from "react";
+import CalendarMonth from "./calendarView/CalendarMonth";
+import CalendarWeek from "./calendarView/CalendarWeek";
+import CalendarDay from "./calendarView/CalendarDay";
+import CalendarChoose from "./CalendarChoose";
 
-const Calendar = ({ tasks }) => {
-    debugger
+const Calendar = ({ tasks, calendarViewArr, calendarView, changeCalendarView, listTime }) => {
     moment.updateLocale('en', { week: { dow: 1 } });
 
     const [day, setDay] = useState(moment());
-    const startDay = day.clone().startOf('month').startOf('week').subtract(1, 'day');
-    const endDay = day.clone().endOf('month').endOf('week').subtract(1, 'day');
 
-
-    const amountDay = endDay.diff(startDay, 'days') + 1;
-    const calendar = [...Array(amountDay)].map(() => startDay.add(1, 'day').clone());
-
-    console.log('moment' + moment() + 'day' + day + moment().isSame(day));
 
     const nextMonth = () => {
         setDay(prev => prev.clone().add(1, 'month'))
@@ -23,56 +19,69 @@ const Calendar = ({ tasks }) => {
     const previousMonth = () => {
         setDay(prev => prev.clone().subtract(1, 'month'))
     }
+
+    const nextWeek = () => {
+        setDay(prev => prev.clone().add(1, 'week'))
+    }
+    const previousWeek = () => {
+        setDay(prev => prev.clone().subtract(1, 'week'))
+    }
+
+    const nextDay = () => {
+        setDay(prev => prev.clone().add(1, 'day'))
+    }
+    const previousDay = () => {
+        setDay(prev => prev.clone().subtract(1, 'day'))
+    }
+
     const chooseToday = () => {
         setDay(moment())
     }
+
+    const [showChoice, setShowChoice] = useState(false);
+
+    const change = (el) => {
+        changeCalendarView(el)
+        setShowChoice(false)
+    }
+
     return (
         <div className={style.calendar_wrp}>
             <div className={'header ' + style.header_wrp}>
-                <h2>Calendar</h2>
-
+                <div className={style.title}>
+                    <h2 className={style.title_text}>Calendar</h2>
+                    <div className={style.title_select}>
+                        <div onClick={() => setShowChoice(true)} className={style.title_select_block}>
+                            <p className={style.title_select_block_text}>{calendarView}</p>
+                            <span className={style.title_select_block_arrow}></span>
+                        </div>
+                        {showChoice && <div onClick={() => setShowChoice(false)} className={style.title_select_list_wrp}></div>}
+                        <div className={`${showChoice && style.title_select_list_visible} ${style.title_select_list}`}>
+                            {calendarViewArr.map(el => {
+                                return <div key={el} className={style.title_select_list_text}>
+                                    <button className={style.title_select_list_text_btn} onClick={() => change(el)}>{el}</button>
+                                </div>
+                            })}
+                        </div>
+                    </div>
+                </div>
                 <div className={style.header}>
                     <div className={style.header_block}>
                         <div className={style.header_block_date}>
                             <p className={style.header_block_date_p}>{day.format('MMMM')}</p>
                             <p className={style.header_block_date_p}>{day.format('YYYY')}</p>
                         </div>
-                        <div className={style.header_block_choose}>
-                            <button className={style.header_block_choose_btn} onClick={previousMonth}>&lt;</button>
-                            <button className={style.header_block_choose_btn} onClick={chooseToday}>Today</button>
-                            <button className={style.header_block_choose_btn} onClick={nextMonth}>&gt;</button>
-                        </div>
+                        {calendarView === 'Month' && <CalendarChoose previous={previousMonth} chooseToday={chooseToday} next={nextMonth} />}
+                        {/* {calendarView === 'Week' && <CalendarChoose previous={previousWeek} chooseToday={chooseToday} next={nextWeek} />} */}
+                        {calendarView === 'Day' && <CalendarChoose previous={previousDay} chooseToday={chooseToday} next={nextDay} />}
                     </div>
                     <div></div>
                 </div>
             </div>
-            <div className={'content ' + style.calendar}>
-                {calendar.map(el => (
-                    <div className={style.calendar_weekday}>
-                        {(calendar[0] === el || calendar[1] === el || calendar[2] === el || calendar[3] === el ||
-                            calendar[4] === el || calendar[5] === el || calendar[6] === el) &&
-                            <p className={`${style.calendar_cell_p} ${moment().isSame(el, 'day') ? style.calendar_cell_current : ''}`}>
-                                {el.format('ddd')}
-                            </p>}
-                            <CalendarCell tasks={tasks} dateCell={el}/>
-                        {/* <div className={style.calendar_cell}>
-                            <p className={`${style.calendar_cell_p} ${moment().isSame(el, 'day') ? style.calendar_cell_current : ''}`}>
-                                {el.format('D')}
-                            </p>
-                            <div className={style.calendar_cell_tasks}>
-                                <ul>
-                                    {tasks.filter(task => moment(task.date).isSame(el)).map(task => {
-                                        debugger
-                                        return (<li className={style.calendar_cell_tasks_one}>
-                                            <button className={style.calendar_cell_tasks_one}>{task.nameTask}</button>
-                                        </li>)
-                                    })}
-                                </ul>
-                            </div>
+            {calendarView === 'Month' && <CalendarMonth tasks={tasks} day={day} />}
+            {/* {calendarView === 'Week' && <CalendarWeek tasks={tasks} day={day} />} */}
+            {calendarView === 'Day' && <CalendarDay tasks={tasks} day={day} listTime={listTime} />}
 
-                        </div> */}
-                    </div>))}
-            </div>
         </div>
     )
 }

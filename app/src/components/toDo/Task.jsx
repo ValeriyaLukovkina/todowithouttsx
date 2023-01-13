@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import FormEditTaskContainer from "../Form/FormEditSubtask/FormEditTaskContainer";
-import ModalListContainer from "../modal/modalList/modalListContainer";
-import ModalReminderContainer from "../modal/modalReminder/modalReminderContainer";
+import FormEditTaskContainer from "../form/formEditSubtask/FormEditTaskContainer";
+import ModalListContainer from "../modal/modalList/ModalListContainer";
+import ModalReminderContainer from "../modal/modalReminder/ModalReminderContainer";
 import Subtasks from "./Subtasks";
 import TaskInfo from "./TaskInfo";
-import style from "./ToDo.module.scss"
+import style from "./toDo.module.scss"
 
 const Task = ({ complete, isTaskComplete, isAllSubtaskComplete, isSubtaskComplete, deleteTask, 
     deleteSubtask, addSubtaskPrevious, taskId, nameTask, taskCategory, date, subtask, time, titleCategory }) => {
+        debugger
     const [showFullInfo, setShowFullInfo] = useState(true);
     const [openCategory, setOpenCategory] = useState(false);
     const [openReminder, setOpenReminder] = useState(false);
@@ -43,7 +44,7 @@ const Task = ({ complete, isTaskComplete, isAllSubtaskComplete, isSubtaskComplet
                             <FormEditTaskContainer setEditTask={setEditTask} taskId={taskId} nameTask={nameTask} />
                         </div>
 
-                        : <p onClick={!complete ? () => setEditTask(taskId) : null} className={style.task_text_name}>{nameTask}</p>}
+                        : <p onClick={!complete ? () => setEditTask(taskId) : null} className={style.task_text_name + ' ' + (complete && style.task_text_name_disable)}>{nameTask}</p>}
 
                     {!complete && <TaskInfo taskCategory={taskCategory} date={date} time={time} subtask={subtask} />}
 
@@ -62,7 +63,7 @@ const Task = ({ complete, isTaskComplete, isAllSubtaskComplete, isSubtaskComplet
             </div>
             {!showFullInfo &&
                 <>
-                    <Subtasks subtask={subtask} addSubtaskPrevious={addSubtaskPrevious} isSubtaskComplete={isSubtaskComplete} taskId={taskId} date={date} time={time} deleteSubtask={deleteSubtask} taskCategory={taskCategory} />
+                    <Subtasks isTaskComplete={isTaskComplete} completeTask={complete} subtask={subtask} addSubtaskPrevious={addSubtaskPrevious} isSubtaskComplete={isSubtaskComplete} taskId={taskId} date={date} time={time} deleteSubtask={deleteSubtask} taskCategory={taskCategory} />
                     <div className={style.subtask_changes}>
                         <button
                             onClick={() => setOpenReminder(true)}

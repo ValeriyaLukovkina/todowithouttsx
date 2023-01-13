@@ -44,6 +44,14 @@ export const tasksAPI = {
         })
         .then(response => response.data)
     },
+    changeAllTaskCategory( userId, previousCategory, nextCategory ) {
+        return instance.post('task/changeallcategory', {
+            userId, 
+            previousCategory, 
+            nextCategory
+        })
+        .then(response => response.data)
+    },
     isTaskComplete( taskId, boolean ) {
         return instance.post('task/iscomplete', {
             taskId,
@@ -67,6 +75,10 @@ export const tasksAPI = {
     },
     deleteTask(taskId) {
         return instance.delete(`task/delete/${taskId}`)
+        .then(response => response.data) 
+    },
+    deleteTaskCurrentCategory(userId, category) {
+        return instance.delete(`task/deletecurrentcategory/${userId}/${category}`)
         .then(response => response.data) 
     }
 }

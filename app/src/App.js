@@ -2,14 +2,14 @@
 import './App.scss';
 import React, { useEffect } from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import SignIn from './components/Login/SignIn/SignIn';
-import SignUp from './components/Login/SignUp/SignUp';
+import SignIn from './components/login/signIn/SignIn';
+import SignUp from './components/login/signUp/SignUp';
 import ToDoContainer from './components/toDo/ToDoContainer';
-import NavbarContainer from './components/Navbar/NavbarContainer';
-import ToDoWeekContainer from './components/toDo/ToDoWeek/ToDoWeekContainer';
-import ToDoDayContainer from './components/toDo/ToDoDay/ToDoDayContainer';
-import CalendarContainer from './components/Calendar/CalendarContainer';
-import ToDoCategoryContainer from './components/toDo/ToDoCategory/ToDoCategoryContainer';
+import NavbarContainer from './components/navbar/NavbarContainer';
+import ToDoWeekContainer from './components/toDo/toDoWeek/ToDoWeekContainer';
+import ToDoDayContainer from './components/toDo/toDoDay/ToDoDayContainer';
+import CalendarContainer from './components/calendar/CalendarContainer';
+import ToDoCategoryContainer from './components/toDo/toDoCategory/ToDoCategoryContainer';
 // import ToDoCategoryContainer from './components/toDo/ToDoCategory/ToDoCategoryContainer';
 
 const App = ({ isAuth, setAuthUserData, initializedSuccess, getAllTasks, setCategories, }) => {
@@ -26,7 +26,7 @@ const App = ({ isAuth, setAuthUserData, initializedSuccess, getAllTasks, setCate
   }, [])
 
   return (
-    <div>
+    <div className='fixed'>
       <div className={isAuth ? 'app_wrapper' : ''}>
         <BrowserRouter>
           {isAuth && <NavbarContainer />}
@@ -35,11 +35,11 @@ const App = ({ isAuth, setAuthUserData, initializedSuccess, getAllTasks, setCate
               <Route path='/' element={!isAuth && <SignIn />} />
               <Route path='/signin' element={isAuth ? <Navigate replace to={'/'} /> : <SignIn />} />
               <Route path='/signup' element={isAuth ? <Navigate replace to={'/'} /> : <SignUp />} />
-              <Route path='/tasks' element={!isAuth ? <Navigate replace to={'/'} /> : <ToDoContainer />} />
-              <Route path='/week' element={!isAuth ? <Navigate replace to={'/'} /> : <ToDoWeekContainer />} />
-              <Route path='/day' element={!isAuth ? <Navigate replace to={'/'} /> : <ToDoDayContainer />} />
-              <Route path='/tasks/category/:name' element={!isAuth ? <Navigate replace to={'/'} /> : <ToDoCategoryContainer />} />
-              <Route path='/calendar' element={!isAuth ? <Navigate replace to={'/'} /> : <CalendarContainer />} />
+              <Route path='/tasks' element={<ToDoContainer />} />
+              <Route path='/week' element={<ToDoWeekContainer />} />
+              <Route path='/day' element={<ToDoDayContainer />} />
+              <Route path='/category/:name' element={<ToDoCategoryContainer />} />
+              <Route path='/calendar' element={<CalendarContainer />} />
             </Routes>
           </div>
         </BrowserRouter>
@@ -49,3 +49,6 @@ const App = ({ isAuth, setAuthUserData, initializedSuccess, getAllTasks, setCate
 }
 
 export default App;
+
+
+// !isAuth ? <Navigate replace to={'/'} /> : 

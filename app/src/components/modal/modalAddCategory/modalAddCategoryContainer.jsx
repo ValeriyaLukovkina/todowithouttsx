@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { addCategory } from "../../../redux/category-reducer";
-import ModalAddCategory from "./modalAddCategory";
+import ModalAddCategory from "./ModalAddCategory";
 
 const mapStateToProps = (state, ownProps) => {
     return {

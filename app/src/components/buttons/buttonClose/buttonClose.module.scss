@@ -6,13 +6,12 @@
     background: transparent;
     width: 30px;
     height: 30px;
+    cursor: pointer;
 
     &:hover:before,
     &:hover:after {
-        border-bottom: 1px solid $color_choose;
+        opacity: 50%;
     }
-
-    // display: block;
 
     &:before {
         content: '';
@@ -22,10 +21,6 @@
         width: 15px;
         border-bottom: 1px solid $color_text_dark;
         transform: rotate(45deg);
-
-        // &:hover {
-        //     border-bottom: 1px solid $color_choose;
-        // }
     }
 
     &:after {
@@ -36,9 +31,5 @@
         width: 15px;
         border-bottom: 1px solid $color_text_dark;
         transform: rotate(-45deg);
-
-        // &:hover {
-        //     border-bottom: 1px solid $color_choose;
-        // }
     }
 }

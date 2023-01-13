@@ -1,6 +1,6 @@
 import React from "react";
 import { Formik } from "formik";
-import style from "./FormAddSubtask.module.scss"
+import style from "./formAddSubtask.module.scss"
 
 const Form = ({ nameForm, initVal, handleBlur }) => {
     return (
@@ -23,12 +23,16 @@ const Form = ({ nameForm, initVal, handleBlur }) => {
                 errors,
                 touched,
                 handleChange,
-                // handleBlur,
                 handleSubmit,
             }) => (
                 <form
                     className={nameForm === 'task' ? style.form_task : style.form_subtask}
-                    onSubmit={handleSubmit}>
+                    onSubmit={handleSubmit}
+                    onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                            handleBlur(values[nameForm])
+                        }
+                    }}>
                     <input
                         value={nameForm === 'task' ? values.task : values.subtask}
                         autoFocus

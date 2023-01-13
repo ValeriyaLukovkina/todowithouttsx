@@ -17,7 +17,6 @@
             border: 1px solid $color_text_dark;
         }
 
-        // &:focus-visible,
         &:focus {
             border: 1px solid $color_text_dark;
             box-shadow: 0px 0px 4px 0px $color_text_dark;
@@ -33,16 +32,13 @@
     overflow: scroll;
     background-color: $color_grey_todo;
     border-radius: 20px;
-    // background-color: #E5E5E5;
     border: 1px solid transparent;
     margin-top: 10px;
     transition: all .5s;
-    // transform: scale(0);
 
     &_visible {
         height: 120px;
         border: 1px solid black;
-        // transform: scale(0);
     }
 
     &_item {

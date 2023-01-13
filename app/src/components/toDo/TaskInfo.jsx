@@ -1,5 +1,5 @@
 import React from "react";
-import style from "./ToDo.module.scss";
+import style from "./toDo.module.scss";
 import logoSubtask from "./../../assests/svg/Subtask.svg";
 import moment from "moment";
 

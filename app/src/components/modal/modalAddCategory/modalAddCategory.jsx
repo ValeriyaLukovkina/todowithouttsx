@@ -2,7 +2,7 @@ import React from "react";
 import * as ReactDOM from 'react-dom';
 import style from "./modalAddCategory.module.scss";
 import styleModal from "./../modal.module.scss";
-import FormAddCategoryContainer from "../../Form/FormAddCategory/FormAddCategoryContainer";
+import FormAddCategoryContainer from "../../form/formAddCategory/FormAddCategoryContainer";
 
 const ModalAddCategory = ({ onClose}) => {
 

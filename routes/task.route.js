@@ -60,6 +60,20 @@ router.post('/changecategory', async (req, res) => {
     }
 })
 
+router.post('/changeallcategory', async (req, res) => {
+    try {
+        const { userId, previousCategory, nextCategory  } = req.body;
+        const task = await Tasks.updateMany({owner: userId, category: previousCategory}, {$set: { category: nextCategory }})
+        if(!task.acknowledged) {
+            return res.json({ message: 'Error'})
+        }
+        res.status(201).json({ resultCode: 0 })
+
+    } catch (error) {
+        console.log(error)
+    }
+})
+
 router.post('/iscomplete', async (req, res) => {
     try {
         const {taskId, boolean } = req.body;
@@ -70,7 +84,6 @@ router.post('/iscomplete', async (req, res) => {
         res.status(201).json({resultCode: 0 })
 
     } catch (error) {
-        // console.log(error)
     }
 })
 
@@ -110,6 +123,20 @@ router.delete('/delete/:taskId', async (req, res) => {
             return res.json({ message: 'Задание не найдено'})
         }
         res.status(201).json({resultCode: 0 })
+
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+router.delete('/deletecurrentcategory/:userId/:category', async (req, res) => {
+    try {
+        const task = await Tasks.deleteMany({ owner: req.params.userId, category: req.params.category })
+        console.log(task)
+        if(!task.acknowledged) {
+            return res.json({ message: 'Error'})
+        }
+        res.status(201).json({resultCode: 0, countDeletedTask: task.deletedCount })
 
     } catch (error) {
         console.log(error)

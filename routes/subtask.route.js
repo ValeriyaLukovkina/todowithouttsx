@@ -46,8 +46,6 @@ router.post('/changename', async (req, res) => {
             { id: taskId, "subtask._id": subtaskId },
             { $set: { "subtask.$.nameSubtask": nameSubtask } }
         )
-        console.log(task)
-        // const subtask = task.subtask.filter(el => el.id === subtaskId)
         if (!task.acknowledged) {
             return res.json({ resultCode: 1, message: 'Subtask is not found' })
         }

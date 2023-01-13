@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import FormAddSubtaskContainer from "../Form/FormAddSubtask/FormAddSubtaskContainer";
-import style from "./ToDo.module.scss"
+import FormAddSubtaskContainer from "../form/formAddSubtask/FormAddSubtaskContainer";
+import style from "./toDo.module.scss"
 
-const Subtasks = ({ subtask, isSubtaskComplete, taskId, deleteSubtask, addSubtaskPrevious, category, date, time, }) => {
+const Subtasks = ({ isTaskComplete, completeTask, subtask, isSubtaskComplete, taskId, deleteSubtask, addSubtaskPrevious, category, date, time, }) => {
     const [editSubtask, setEditSubtask] = useState(null);
     const [addingSubtask, setAddingSubtask] = useState(false);
 
@@ -10,7 +10,11 @@ const Subtasks = ({ subtask, isSubtaskComplete, taskId, deleteSubtask, addSubtas
         return <div key={el._id} className={style.subtask}>
             {el.complete ?
                 <button
-                    onClick={() => isSubtaskComplete(taskId, el._id, false)}
+                    onClick={() => {
+                        if (completeTask) {
+                            isTaskComplete(taskId, false)
+                        }
+                        isSubtaskComplete(taskId, el._id, false)}}
                     className={`${style.task_btn_complete} ${style.task_btn} ${style.subtask_btn}`}>
                     <span className={style.task_btn_span_nocomplete + ' ' + style.task_btn_span}></span>
                 </button>
@@ -27,7 +31,7 @@ const Subtasks = ({ subtask, isSubtaskComplete, taskId, deleteSubtask, addSubtas
 
                     : <p onClick={() => {
                         setEditSubtask(el._id)
-                    }} className={style.subtask_text}>{el.nameSubtask}</p>}
+                    }} className={style.subtask_text + ' ' + (el.complete && style.subtask_text_disable)}>{el.nameSubtask}</p>}
 
             </div>
             <button
@@ -44,8 +48,11 @@ const Subtasks = ({ subtask, isSubtaskComplete, taskId, deleteSubtask, addSubtas
 
             <div
                 onClick={() => {
-                    setAddingSubtask(true)
-                    addSubtaskPrevious(taskId, '')
+                    if (!completeTask) {
+                        setAddingSubtask(true)
+                        addSubtaskPrevious(taskId, '')
+                    }
+                    debugger
                 }}
                 className={style.subtask}>
                 <button

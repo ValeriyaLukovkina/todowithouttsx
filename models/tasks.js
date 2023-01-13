@@ -12,15 +12,12 @@ const tasksSchema = new Schema({
     },
     date: {
         type: Date,
-        // required: true,
     },
     time: {
         type: Date,
-        // required: true,
     },
     category: {
         type: String,
-        // required: true,
     },
     owner: {
         type: Types.ObjectId, ref: 'User',

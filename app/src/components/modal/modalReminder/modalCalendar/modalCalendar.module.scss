@@ -17,7 +17,7 @@
                 font-weight: 400;
                 text-transform: uppercase;
                 margin: 0 0 5px 0;
-
+                cursor: default;
             }
         }
     }
@@ -25,10 +25,10 @@
     &_header {
         display: flex;
         justify-content: space-between;
+        cursor: default;
 
         &_date {
             display: flex;
-
         }
 
         &_block {
@@ -37,9 +37,10 @@
             &_btn {
                 background-color: transparent;
                 border: none;
+                cursor: pointer;
 
                 &:hover {
-                    color: red;
+                    opacity: 50%;
                 }
             }
         }
@@ -60,12 +61,12 @@
                 background-color: transparent;
                 border: none;
                 color: $color_text_dark;
+                cursor: pointer;
 
                 &_disable {
                     background-color: transparent;
                     border: none;
                     color: $color_grey_hover;
-
                 }
 
                 &:hover {

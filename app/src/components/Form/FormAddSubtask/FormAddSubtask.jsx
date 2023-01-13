@@ -18,8 +18,6 @@ const FormAddSubtask = ({ adding, nameSubtask, taskId, subtaskId, changeSubtaskN
         } else if (newNameSubtask && newNameSubtask.trim()) {
             changeSubtaskName(taskId, subtaskId, newNameSubtask);
             setEditSubtask(null)
-            // setOldNameSubtask(newNameSubtask)
-            // 
         } else {
             changeSubtaskName(taskId, subtaskId, oldNameSubtask)
             setEditSubtask(null)

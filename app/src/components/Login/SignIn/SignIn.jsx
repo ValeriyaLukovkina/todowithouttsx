@@ -1,7 +1,7 @@
 import React from "react";
 import * as ReactDOM from 'react-dom';
 
-import style from "./../Login.module.scss"
+import style from "../login.module.scss"
 import SignInFormContainer from "./SignInFormContainer";
 
 

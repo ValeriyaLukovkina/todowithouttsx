@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { changeTaskCategory } from "../../../redux/todo-reducer";
-import modalList from "./modalList";
+import modalList from "./ModalList";
 
 const mapStateToProps = (state, ownProps) => {
     return {

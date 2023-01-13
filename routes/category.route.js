@@ -27,8 +27,6 @@ router.delete('/delete/:userId/:categoryId', async (req, res) => {
     try {
          const user = await User.findOneAndUpdate( req.params.userId, { $pull: { categories: {_id: req.params.categoryId} } });
             console.log(user)
-
-        // const newCategory = user.categories[user.categories.length - 1]
         if (!user) {
             return res.json({ message: 'Пользователь не найден' })
         }

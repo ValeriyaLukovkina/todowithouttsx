@@ -1,17 +1,17 @@
 import React from "react";
 import { connect } from "react-redux";
-import { nextMonth, previousMonth } from "../../redux/calendar-reducer";
+import { changeCalendarView } from "../../redux/calendar-reducer";
 import Calendar from "./Calendar";
 
 const mapStateToProps = (state) => {
     return {
-        // date: state.calendar.date,
-        // startDay: state.calendar.startDay,
-        // endDay: state.calendar.endDay,
         tasks: state.toDo.tasks,
+        calendarViewArr: state.calendar.calendarViewArr,
+        calendarView: state.calendar.calendarView,
+        listTime: state.calendar.listTime
     }
 }
 
-const CalendarContainer = connect(mapStateToProps, { nextMonth, previousMonth})(Calendar)
+const CalendarContainer = connect(mapStateToProps, { changeCalendarView })(Calendar)
 
 export default CalendarContainer;

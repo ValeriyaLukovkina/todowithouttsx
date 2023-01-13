@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import ModalReminder from "./modalReminder";
+import ModalReminder from "./ModalReminder";
 
 const mapStateToProps = (state, ownProps) => {
     return {
@@ -10,7 +10,8 @@ const mapStateToProps = (state, ownProps) => {
         taskId: ownProps.taskId,
         setTemporaryDate: ownProps.setTemporaryDate,
         setTemporaryTime: ownProps.setTemporaryTime,
-        setTemporaryTaskCategory: ownProps.setTemporaryTaskCategory,
+        isOpen: ownProps.isOpen,
+        onClose: ownProps.onClose,
     }
 }
 

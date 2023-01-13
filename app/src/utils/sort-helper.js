@@ -1,9 +1,7 @@
 import moment from "moment"
 
 export let sortByList = (items, propName, objPropName, Component, props) => {
-    // debugger
     return items.map((task) => {
-        // debugger
         if (task[objPropName] === propName) {
             return <Component
                 key={task._id} subtask={task.subtask} date={task.date}
@@ -48,7 +46,7 @@ export let sortByDate = (items, propName, objPropName, Component, props, extra) 
     } else if (propName === 'Week') {
         return items.map((task) => {
             if (task[objPropName]) {
-                if (moment(task[objPropName]).isBefore(endSevenDay, 'day')) {
+                if (moment(task[objPropName]).isAfter(today, 'day') && moment(task[objPropName]).isBefore(endSevenDay, 'day')) {
                     return <Component
                         key={task._id} subtask={task.subtask} date={task.date}
                         time={task.time} taskCategory={task.category} isSubtaskComplete={props.isSubtaskComplete}
@@ -87,11 +85,14 @@ export let sortByDate = (items, propName, objPropName, Component, props, extra) 
 }
 
 export let filterGroup = (group) => {
+    if (!group) {
+        return undefined
+    }
     return group.filter(el => el).sort((a, b) => {
         if (a.props.complete) {
             return -1
-        }else if (b.props.complete) {
-            return 0 
+        } else if (b.props.complete) {
+            return 0
         } else if (a.props.time && b.props.time) {
             if (moment(a.props.time).isAfter(moment(b.props.time))) {
                 return 1;
@@ -117,4 +118,15 @@ export let filterGroup = (group) => {
         }
     })
 
+}
+
+export let sortByDateCalendar = (items, date) => {
+    const itemGroup = items.map(task => {
+        if (task['date']) {
+            if (moment(task['date']).isSame(date, 'day')) {
+                return task
+            }
+        }
+    })
+    return itemGroup.filter(task => task)
 }

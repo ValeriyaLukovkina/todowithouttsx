@@ -2,8 +2,8 @@ import React from "react";
 import * as ReactDOM from 'react-dom';
 import style from "./modalList.module.scss";
 import styleModal from "./../modal.module.scss";
-import ModalListItem from "./modalListItem";
-import ButtonClose from "../../buttons/buttonClose/buttonClose";
+import ModalListItem from "./ModalListItem";
+import ButtonClose from "../../buttons/buttonClose/ButtonClose";
 
 const modalList = ({ tasks, isOpen, onClose, categories, taskId, changeTaskCategory, taskCategory, setTemporaryTaskCategory }) => {
     const categoriesItem = categories.map(el => {

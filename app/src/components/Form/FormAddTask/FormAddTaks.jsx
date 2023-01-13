@@ -1,23 +1,18 @@
 import React from "react";
 import { Formik } from "formik";
-import style from "./FormAddTask.module.scss"
+import style from "./formAddTask.module.scss"
 import { useState } from "react";
-import ModalReminderContainer from "../../modal/modalReminder/modalReminderContainer";
-import ModalListContainer from "../../modal/modalList/modalListContainer";
 import moment from "moment";
+import ModalReminderContainer from "../../modal/modalReminder/ModalReminderContainer";
+import ModalListContainer from "../../modal/modalList/ModalListContainer";
 
 const FormAddTaks = ({ addTask, userId }) => {
-    const [openInfo, setOpenInfo] = useState(true)
+    const [openInfo, setOpenInfo] = useState(false)
     const [openReminder, setOpenReminder] = useState(false);
     const [openCategory, setOpenCategory] = useState(false);
     const [temporaryDate, setTemporaryDate] = useState(null);
     const [temporaryTime, setTemporaryTime] = useState(null);
     const [temporaryTaskCategory, setTemporaryTaskCategory] = useState(null)
-
-
-    const handleBlur = () => {
-        setOpenInfo(false)
-    }
 
     const handleFocus = () => {
         setOpenInfo(true)
@@ -29,7 +24,10 @@ const FormAddTaks = ({ addTask, userId }) => {
                 <div className={style.setting_wrp + ' ' + (openInfo && style.setting_wrp_visible)}>
                     <div className={style.setting_block}>
                         <button
-                            onClick={() => setOpenReminder(true)}
+                        onClick={() => {
+                            setOpenReminder(true)
+                            setOpenInfo(false)
+                        }}
                             className={style.setting_block_btn}>
                                 {temporaryDate && moment(temporaryDate).format('DD.MM.YYYY') + ' '}  
                                 {/* {temporaryTime && moment(temporaryTime.format('LT')) */}
@@ -37,12 +35,15 @@ const FormAddTaks = ({ addTask, userId }) => {
                                 {!temporaryDate && !temporaryTime && 'Remind'}
                                 {/* {temporaryDate || temporaryTime ? moment(temporaryDate).format('DD.MM.YYYY') + ' ' + moment(temporaryTime, 'LT') : 'Remind'} */}
                             </button>
-                        <ModalReminderContainer taskId={null} date={temporaryDate} time={temporaryTime} setTemporaryDate={setTemporaryDate} setTemporaryTime={setTemporaryTime} isOpen={openReminder} onClose={() => setOpenReminder(false)} />
+                        <ModalReminderContainer isOpen={openReminder} taskId={null} date={temporaryDate} time={temporaryTime} setTemporaryDate={setTemporaryDate} setTemporaryTime={setTemporaryTime} onClose={() => setOpenReminder(false)} />
 
                     </div>
                     <div className={style.setting_block}>
                         <button
-                            onClick={() => setOpenCategory(true)}
+                            onClick={() => {
+                                setOpenCategory(true)
+                                setOpenInfo(false)
+                            }}
                             className={style.setting_block_btn}>
                                 {temporaryTaskCategory ? temporaryTaskCategory : 'Choose category'}
                             </button>
@@ -52,7 +53,7 @@ const FormAddTaks = ({ addTask, userId }) => {
                 </div>
             </div>
             <Formik
-                initialValues={{ task: 'Введите заметку' }}
+                initialValues={{ task: '' }}
                 validate={values => {
                     const errors = {};
                     if (!values.task) {
@@ -60,21 +61,18 @@ const FormAddTaks = ({ addTask, userId }) => {
                     }
                     return errors;
                 }}
-                onSubmit={values => {
+                onSubmit={(values, {resetForm}) => {
+                    setOpenInfo(false)
                     addTask(userId, values.task, temporaryDate, temporaryTime, temporaryTaskCategory)
+                    resetForm()
                 }}
-            // handleFocus={values => {
-            //     setOpenInfo(true)
-            // }}
             >
                 {({
                     values,
                     errors,
                     touched,
                     handleChange,
-                    // handleBlur,
                     handleSubmit,
-                    // handleFocus
                 }) => (
 
                     <form
@@ -86,10 +84,10 @@ const FormAddTaks = ({ addTask, userId }) => {
                             type="text"
                             name="task"
                             onChange={handleChange}
-                            onBlur={handleBlur}
                             onFocus={handleFocus}
+                            autoComplete='off'
+                            value={values.task}
                         />
-                        {/* {errors.task && touched.task && errors.task} */}
                         <button className={style.form_btn} type="submit">
 
                         </button>

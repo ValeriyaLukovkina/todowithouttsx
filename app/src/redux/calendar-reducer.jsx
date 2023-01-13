@@ -2,6 +2,7 @@ import moment from "moment";
 
 const NEXT_MONTH = 'NEXT_MONTH';
 const PREVIOUS_MONTH = 'NEXT_MONTH';
+const CHANGE_CALENDAR_VIEW = 'CHANGE_CALENDAR_VIEW';
 
 const year = 2022;
 const month = 6;
@@ -16,7 +17,9 @@ const initialState = {
     date: moment,
     startDay: moment().startOf('month').startOf('week'),
     endDay: moment().endOf('month').endOf('week'),
-    listTime: listTimeArr
+    listTime: listTimeArr,
+    calendarViewArr: ['Day', 'Month'],
+    calendarView: 'Day'
 }
 
 const calendarReducer = (state = initialState, action) => {
@@ -31,6 +34,11 @@ const calendarReducer = (state = initialState, action) => {
                 ...state,
                 date: new Date(year, month - 1, day)
             }
+            case CHANGE_CALENDAR_VIEW:
+                return {
+                    ...state,
+                    calendarView: action.calendarView
+                }
         default:
             return {
                 ...state
@@ -40,5 +48,6 @@ const calendarReducer = (state = initialState, action) => {
 
 export const nextMonth = () => ({ type: NEXT_MONTH });
 export const previousMonth = () => ({ type: PREVIOUS_MONTH });
+export const changeCalendarView = (calendarView) => ({ type: CHANGE_CALENDAR_VIEW, calendarView })
 
 export default calendarReducer;

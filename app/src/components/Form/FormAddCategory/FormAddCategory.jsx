@@ -1,6 +1,6 @@
 import React from "react";
 import { Formik } from "formik";
-import style from "./FormAddCategory.module.scss"
+import style from "./formAddCategory.module.scss"
 
 const FormAddCategory = ({ onClose, addCategory, userId }) => {
 
@@ -19,9 +19,6 @@ const FormAddCategory = ({ onClose, addCategory, userId }) => {
                     addCategory(userId, values.category);
                     onClose()
                 }}
-            // handleFocus={values => {
-            //     setOpenInfo(true)
-            // }}
             >
                 {({
                     values,
@@ -35,15 +32,22 @@ const FormAddCategory = ({ onClose, addCategory, userId }) => {
 
                     <form
                         className={style.formCategory}
-                        onSubmit={handleSubmit}>
+                        onSubmit={handleSubmit}
+                        onKeyDown={(e) => {
+                            if (e.key === 'Enter') {
+                                handleSubmit()
+                            }
+                        }}
+                        >
                         <input
-                            placeholder="Введите название"
-                            className={style.formCategory_input}
+                            placeholder={"Введите название"}
+                            className={style.formCategory_input + ' ' + (touched.category && errors.category && style.formCategory_input_error)}
                             type="text"
                             name="category"
                             onChange={handleChange}
                             onBlur={handleBlur}
                             onFocus={handleFocus}
+                            autoComplete="off"
                         />
                         <div className={style.formCategory_footer}>
                             <button

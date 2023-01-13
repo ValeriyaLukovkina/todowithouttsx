@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import moment from "moment";
 import style from './modalCalendar.module.scss'
-import ChoiceDate from "./formWithDate/choiceDate";
-import ChoiceTime from "./formWithDate/choiseTime";
+import ChoiceDate from "./formWithDate/ChoiceDate";
+import ChoiceTime from "./formWithDate/ChoiceTime";
 
 const ModalCalendar = ({ date, taskId, setTaskDate, setTaskTime, time, setTemporaryDate, setTemporaryTime, listTime }) => {
     window.moment = moment;

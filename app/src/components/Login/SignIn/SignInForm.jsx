@@ -1,6 +1,6 @@
 import React from 'react';
 import { Formik } from 'formik';
-import style from "./../Login.module.scss"
+import style from "../login.module.scss"
 import { NavLink } from 'react-router-dom';
 
 const SignInForm = ({ login }) => {
@@ -31,10 +31,6 @@ const SignInForm = ({ login }) => {
           }}
           onSubmit={(values, { setSubmitting, setStatus }) => {
             login(values.email, values.password, setStatus)
-            // setTimeout(() => {
-            //   alert(JSON.stringify(values, null, 2));
-            //   setSubmitting(false);
-            // }, 400);
           }}
         >
           {({
@@ -45,7 +41,6 @@ const SignInForm = ({ login }) => {
             handleBlur,
             handleSubmit,
             isSubmitting,
-            /* and other goodies */
           }) => (
             <form
               className={style.sign_form}
