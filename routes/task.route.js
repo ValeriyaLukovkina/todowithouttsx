@@ -132,7 +132,6 @@ router.delete('/delete/:taskId', async (req, res) => {
 router.delete('/deletecurrentcategory/:userId/:category', async (req, res) => {
     try {
         const task = await Tasks.deleteMany({ owner: req.params.userId, category: req.params.category })
-        console.log(task)
         if(!task.acknowledged) {
             return res.json({ message: 'Error'})
         }

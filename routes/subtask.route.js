@@ -8,7 +8,6 @@ router.post('/add', async (req, res) => {
         const { taskId, nameSubtask } = req.body;
         await Tasks.findByIdAndUpdate(taskId, { $push: { subtask: {nameSubtask, complete: false} } });
         const task = await Tasks.findById(taskId)
-        console.log(task)
         if (!task) {
             return res.json({ message: 'Задание не найдено' })
         }
@@ -28,7 +27,7 @@ router.post('/isComplete', async (req, res) => {
             { $set: { "subtask.$.complete": boolean } }
         )
         const subtask = task.subtask.filter(el => el.id === subtaskId)
-        console.log(task.subtask.some(sub => sub.complete=== false))
+
         if (!subtask) {
             return res.json({ resultCode: 1 })
         }
@@ -63,10 +62,7 @@ router.post('/isallcomplete', async (req, res) => {
             { id: taskId },
             { $set: { "subtask.$[].complete" : boolean } }
         )
-        // console.log(task)
-        // if (!task.acknowledged) {
-        //     return res.json({ resultCode: 1, message: 'Subtask is not found' })
-        // }
+        
         res.status(201).json({ resultCode: 0 })
 
     } catch (error) {

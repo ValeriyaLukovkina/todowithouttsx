@@ -84,7 +84,6 @@ router.post('/login',
                 jwtSecret,
                 {expiresIn: '1h'}
             )
-            console.log(user.categories)
             res.json({resultCode: 0, token, userId: user.id, userFirstName: user.firstName, userLastName: user.lastName, categories: user.categories})
 
         } catch (error) {

@@ -1,6 +1,4 @@
 import mongoose, {Types} from "mongoose";
-// import {Types} from "mongoose";
-
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({

@@ -9,7 +9,7 @@ const router = Router();
 router.post('/add', async (req, res) => {
     try {
         const { userId, categoryName } = req.body;
-        await User.findByIdAndUpdate(userId, { $push: { categories: {title: categoryName} } });
+        await User.findByIdAndUpdate(userId, { $push: { categories: { title: categoryName } } });
         const user = await User.findById(userId)
 
         const newCategory = user.categories[user.categories.length - 1]
@@ -25,8 +25,7 @@ router.post('/add', async (req, res) => {
 
 router.delete('/delete/:userId/:categoryId', async (req, res) => {
     try {
-         const user = await User.findOneAndUpdate( req.params.userId, { $pull: { categories: {_id: req.params.categoryId} } });
-            console.log(user)
+        const user = await User.findByIdAndUpdate(req.params.userId, { $pull: { categories: { _id: req.params.categoryId } } });
         if (!user) {
             return res.json({ message: 'Пользователь не найден' })
         }
