@@ -8,7 +8,7 @@ import category from "./routes/category.route.js";
 import config from 'config';
 
 const app = express();
-const PORT = config.get('port') || 3001;
+const PORT = config.get('port') || 443;
 const db = config.get('mongoUri');
 
 mongoose
