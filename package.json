@@ -12,10 +12,12 @@
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "repository": {
-    "type": "git",
+       "type": "git",
     "url": "git+https://github.com/ValeriyaLukovkina/todowithouttsx.git"
   },
   "author": "",
+
+  
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/ValeriyaLukovkina/todowithouttsx/issues"
